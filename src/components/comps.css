@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.links-nav {
+    @apply hidden lg:flex fixed flex-col top-[35%] left-0;
+}

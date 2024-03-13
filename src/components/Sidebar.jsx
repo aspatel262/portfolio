@@ -8,10 +8,11 @@ import {
 import { HiOutlineMail } from 'react-icons/hi';
 import { BsFillPersonLinesFill } from 'react-icons/bs';
 import res from '../assets/Aditya_Patel_Resume.pdf';
+import './comps.css';
 
 const sideBar = () => {
     return (
-        <div className='hidden lg:flex fixed flex-col top-[35%] left-0'>
+        <div className='links-nav'>
                 <ul>
                     <li className='w-[160px] h-[60px] flex justify-between items-center ml-[-100px] hover:ml-[2px] duration-300 bg-blue-600 rounded-2xl'>
                         <a className='flex pl-3 justify-between items-center w-full text-white' href='https://www.linkedin.com/in/adityapatel953/' target="_blank" rel="noopener noreferrer">

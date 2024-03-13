@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-.links-nav {
+.sidebar-nav {
     @apply hidden lg:flex fixed flex-col top-[35%] left-0;
+}
+
+.sidebar-floating-box {
+    @apply w-[160px] h-[60px] flex justify-between items-center ml-[-100px] hover:ml-[2px] duration-300 rounded-2xl;
+}
+
+.sidebar-text {
+    @apply flex pl-3 justify-between items-center w-full text-white;
 }

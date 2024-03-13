@@ -2,14 +2,14 @@ import logo from './assets/logo.svg';
 import './App.css';
 import React from "react";
 import Home from './components/Home.jsx'
-import Navbar from './components/Navbar.jsx'
+import Sidebar from './components/Sidebar.jsx'
 
 
 export default function App() {
   return (
 
     <main>
-      <Navbar />
+      <Sidebar />
       <Home />
     </main>
   )

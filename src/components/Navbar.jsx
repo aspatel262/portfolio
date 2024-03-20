@@ -16,7 +16,8 @@ const Navbar = () => {
     return (
         <div className='fixed w-full h-[125px] flex justify-between items-center px-4 bg-[#0a192f] text-gray-300'>
 
-        /* Home page Logo redirect */
+        {/* Home page Logo redirect */}
+        
             <div>
                 <a href="https://www.google.com">
                     <img src={Logo} alt="" className="fixed w-20 h-20 left-7 top-6" to="https://www.google.com"/>

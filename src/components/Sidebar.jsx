@@ -1,7 +1,5 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {
-    FaBars,
-    FaTimes,
     FaGithub,
     FaLinkedin
 } from 'react-icons/fa';
@@ -15,22 +13,22 @@ const sideBar = () => {
         <div className='sidebar-nav'>
                 <ul>
                     <li className='sidebar-floating-box bg-blue-600'>
-                        <a className='sidebar-text' href='https://www.linkedin.com/in/adityapatel953/' target="_blank" rel="noopener noreferrer">
+                        <a className='sidebar-text pl-3' href='https://www.linkedin.com/in/adityapatel953/' target="_blank" rel="noopener noreferrer">
                             Linkedin <FaLinkedin size={30} />
                         </a>
                     </li>
                     <li className='sidebar-floating-box bg-[#333333]'>
-                        <a className='sidebar-text' href='https://github.com/aspatel262' target="_blank" rel="noopener noreferrer">
+                        <a className='sidebar-text pl-5' href='https://github.com/aspatel262' target="_blank" rel="noopener noreferrer">
                             Github <FaGithub size={30} />
                         </a>
                     </li>
                     <li className='sidebar-floating-box bg-[#6fc2b0]'>
-                        <a className='sidebar-text' href='mailto:aspatel262@gmail.com'>
+                        <a className='sidebar-text pl-6' href='mailto:aspatel262@gmail.com'>
                             Email <HiOutlineMail size={30} />
                         </a>
                     </li>
                     <li className='sidebar-floating-box bg-[#565f69]'>
-                        <a className='sidebar-text' href={ res } target="_blank">
+                        <a className='sidebar-text pl-4' href={ res } target="_blank" rel="noopener noreferrer">
                             Resume <BsFillPersonLinesFill size={30} />
                         </a>
                     </li>

@@ -20,7 +20,7 @@
     justify-between 
     items-center 
     ml-[-100px] 
-    hover:ml-[2px] 
+    hover:ml-[7px] 
     duration-300
     bg-gradient-to-tr 
     rounded-2xl;

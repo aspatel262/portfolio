@@ -10,7 +10,7 @@ export default function App() {
     <Router>
        <Navbar />
       <Routes> {/* Replaces Switch */}
-        <Route path="/" element={<><Home /> <Home /></>} exact /> {/* Note the use of `element` */}
+        <Route path="/" element={<Home />} exact /> {/* Note the use of `element` */}
         {/* <Route path="/about" element={<><Navbar /><About /></>} />  */}
         {/* <Route path="/feature" element={<><NavbarFeature /><Feature /></>} /> */}
         {/* More routes can be added here */}

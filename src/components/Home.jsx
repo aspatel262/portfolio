@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from 'flowbite-react';
 import WavingAnimation from './WavingAnimation'; // Import the WavingAnimation component
+import RadialGradient from './RadialGradient'; // Make sure to import the RadialGradient component
 
 function Home() {
   const [contentVisible, setContentVisible] = useState(false);
@@ -18,8 +19,9 @@ function Home() {
   return (
     <div
       style={gradientStyle}
-      className="flex flex-col md:flex-row items-center justify-center bg-gradient-to-r from-black to-[#2c3e50] text-white min-h-screen px-8 md:px-16 xl:px-24"
+      className="relative flex flex-col md:flex-row items-center justify-center text-white min-h-screen px-8 md:px-16 xl:px-24"
     >
+      <RadialGradient scale="scale-100" opacity="opacity-25" position="top-0" overflow="overflow-visible" />
       <div className="flex flex-col md:flex-row items-center justify-between w-full max-w-5xl py-0 md:space-x-8 lg:space-x-10">
         <div className={`flex-shrink-0 mb-6 md:mb-0 transition-all duration-1000 ease-in-out transform ${
             contentVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'

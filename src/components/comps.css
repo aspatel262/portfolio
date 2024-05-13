@@ -34,3 +34,15 @@
     w-full 
     text-white;
 }
+
+/* Add this to your comps.css or App.css */
+.mobile-menu {
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  
+  .mobile-menu.open {
+    transform: translateY(0);
+    opacity: 1;
+  }

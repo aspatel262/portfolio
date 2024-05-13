@@ -1,7 +1,8 @@
 import './App.css';
 import React from "react";
-import Home from './components/Home.jsx'
+import Home from './components/Home.jsx';
 import Navbar from './components/Navbar.jsx';
+import Footer from './components/Footer.jsx';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 
@@ -15,7 +16,7 @@ export default function App() {
         {/* <Route path="/feature" element={<><NavbarFeature /><Feature /></>} /> */}
         {/* More routes can be added here */}
       </Routes>
-      {/* You could also add a Footer here that would be included on all pages */}
+      <Footer />
     </Router>
   )
 }

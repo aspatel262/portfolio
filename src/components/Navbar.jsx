@@ -127,7 +127,7 @@ function NavbarMain() {
               Linkedin <FaLinkedin size={30} />
             </a>
           </li>
-          <li className='sidebar-floating-box bg-gradient-to-r from-[#555555] to-[#333333] hover:from-gray-700 hover:to-gray-600 hover:scale-105'>
+          <li className='sidebar-floating-box bg-gradient-to-r from-gray-700 to-gray-600 hover:from-[#555555] hover:to-[#333333] hover:scale-105'>
             <a className='sidebar-text pl-5' href='https://github.com/aspatel262' target="_blank" rel="noopener noreferrer">
               Github <FaGithub size={30} />
             </a>

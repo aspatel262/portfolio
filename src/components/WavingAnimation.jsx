@@ -28,7 +28,7 @@ function WavingAnimation() {
           }
           return prevFrame + 1;
         });
-      }, 15); // Speed of frame change
+      }, 25); // Speed of frame change
       setIntervalId(id);
     }
   };
@@ -44,7 +44,7 @@ function WavingAnimation() {
           }
           return prevFrame - 1;
         });
-      }, 15); // Speed of frame change
+      }, 25); // Speed of frame change
       setIntervalId(id);
     }
   };

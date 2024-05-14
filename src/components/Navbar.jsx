@@ -49,8 +49,8 @@ function NavbarMain() {
   };
   
   const navbarBlur = {
-    backdropFilter: isScrolled ? 'blur(8px)' : 'none',
-    WebkitBackdropFilter: isScrolled ? 'blur(8px)' : 'none', // for Safari
+    backdropFilter: isScrolled ? 'blur(4px)' : 'none',
+    WebkitBackdropFilter: isScrolled ? 'blur(4px)' : 'none', // for Safari
   }
 
   const toggleMenu = () => setMenuOpen(!menuOpen);

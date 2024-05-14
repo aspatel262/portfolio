@@ -34,7 +34,7 @@ function NavbarMain() {
   // Define navbar styles based on scroll state
   const navbarStyle = {
     transition: 'all 0.3s ease-in-out',
-    backgroundColor: isScrolled ? '#132230' : 'transparent', // Adjust the background color to match your page when not scrolled
+    backgroundColor: isScrolled ? 'rgba(19, 34, 48, 0.85)' : 'transparent', // Adjust the background color to match your page when not scrolled
     borderRadius: isScrolled ? '30px' : '0',  // Smooth round corners when scrolled
     boxShadow: isScrolled ? '0 4px 8px rgba(0,0,0,0.25)' : 'none', // Subtle shadow when scrolled
     border: isScrolled ? '0px solid #ddd' : 'none', // Optional: border to enhance navbar visibility
@@ -48,11 +48,16 @@ function NavbarMain() {
     right: '0'
   };
   
+  const navbarBlur = {
+    backdropFilter: isScrolled ? 'blur(8px)' : 'none',
+    WebkitBackdropFilter: isScrolled ? 'blur(8px)' : 'none', // for Safari
+  }
+
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
   return (
     <Navbar style={navbarStyle} className="fixed top-0 z-50 w-full md:w-auto">
-      <div className="flex justify-between items-center w-full">
+      <div style={navbarBlur} className="flex justify-between items-center w-full">
         {/* Navbar Brand */}
         <Navbar.Brand href="/" className="flex items-center pl-4">
           <img src={navbarLogo} className="mr-3 h-10 sm:h-12" alt="Aditya Patel Logo" />

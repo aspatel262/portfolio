@@ -37,7 +37,7 @@ function Home() {
                 contentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                 }`}
               >
-                `<h1 className="text-3xl md:text-4xl font-bold">Hello there,</h1>
+                <h1 className="text-3xl md:text-4xl font-bold">Hello there,</h1>
                 <h1
                   className="powerful-results text-3xl md:text-4xl font-bold"
                   style={{

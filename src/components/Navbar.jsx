@@ -49,10 +49,24 @@ function NavbarMain() {
   };
   
   const navbarBlur = {
-    backdropFilter: isScrolled ? 'blur(4px)' : 'none',
-    WebkitBackdropFilter: isScrolled ? 'blur(4px)' : 'none', // for Safari
-  }
+    transition: 'all 0.3s ease-in-out',
+    borderRadius: isScrolled ? '30px' : '0', // Apply rounded corners
+    border: isScrolled ? '0px solid #ddd' : 'none', // Conditional border
+    width: '100%', // Ensure the blur covers the full navbar width
+    backdropFilter: isScrolled ? 'blur(4px)' : 'none', // Apply blur effect when scrolled
+    WebkitBackdropFilter: isScrolled ? 'blur(4px)' : 'none', // Ensure compatibility with Safari
+    height: '100%', // Ensure the blur covers the full navbar height
+    top: 0,
+    left: 0
+  };
 
+  const scrollToContact = () => {
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+  
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
   return (
@@ -75,7 +89,7 @@ function NavbarMain() {
           </div>
 
           {/* Action Button */}
-          <Button className="contact-btn" href="/contact">Contact Me</Button>
+          <Button className="contact-btn" onClick={scrollToContact}>Contact Me</Button>
         </div>
 
 

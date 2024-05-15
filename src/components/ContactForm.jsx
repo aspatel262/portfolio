@@ -1,83 +1,45 @@
 import React, { useState } from 'react';
+import './comps.css'; // Ensure your CSS file is linked
 
 const ContactForm = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
+    const [formData, setFormData] = useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        message: ''
+    });
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormData(prevState => ({
-      ...prevState,
-      [name]: value
-    }));
-  };
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value
+        });
+    };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      const response = await fetch('http://localhost:2000/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData)
-      });
-      const data = await response.json();
-      alert('Message sent: ' + data.message);
-      setFormData({ name: '', email: '', message: '' }); // Clear the form
-    } catch (error) {
-      console.error('Error:', error);
-      alert('Failed to send message');
-    }
-  };
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(formData); // Log data or send to backend
+        // Add actual submission logic here
+    };
 
-  return (
-    <form onSubmit={handleSubmit} className="max-w-lg mx-auto my-10 p-6 bg-white rounded shadow-lg">
-      <h2 className="text-2xl font-bold mb-6 text-center">Contact Us</h2>
-      <div className="mb-4">
-        <label htmlFor="name" className="block text-gray-700">Name</label>
-        <input
-          type="text"
-          name="name"
-          id="name"
-          value={formData.name}
-          onChange={handleChange}
-          className="w-full px-3 py-2 border rounded"
-          required
-        />
-      </div>
-      <div className="mb-4">
-        <label htmlFor="email" className="block text-gray-700">Email</label>
-        <input
-          type="email"
-          name="email"
-          id="email"
-          value={formData.email}
-          onChange={handleChange}
-          className="w-full px-3 py-2 border rounded"
-          required
-        />
-      </div>
-      <div className="mb-4">
-        <label htmlFor="message" className="block text-gray-700">Message</label>
-        <textarea
-          name="message"
-          id="message"
-          rows="4"
-          value={formData.message}
-          onChange={handleChange}
-          className="w-full px-3 py-2 border rounded"
-          required
-        />
-      </div>
-      <button type="submit" className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-        Send Message
-      </button>
-    </form>
-  );
+    return (
+        <div className='flex flex-col md:flex-row md:items-center justify-center w-full min-h-screen bg-gray-100'>
+            <div className="contact-form-wrapper m-auto">
+                Hello
+            </div>
+            <div className="contact-form-wrapper m-auto">
+                <h2>Reach Out to Aditya!</h2>
+                <form onSubmit={handleSubmit} className="contact-form">
+                    <input type="text" name="firstName" placeholder="First Name" value={formData.firstName} onChange={handleChange} />
+                    <input type="text" name="lastName" placeholder="Last Name" value={formData.lastName} onChange={handleChange} />
+                    <input type="email" name="email" placeholder="What's your email?" value={formData.email} onChange={handleChange} />
+                    <textarea name="message" placeholder="Your questions..." value={formData.message} onChange={handleChange}></textarea>
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
+        </div>
+    );
 };
 
 export default ContactForm;

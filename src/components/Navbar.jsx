@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom'; // Import useNavigate and useLocation
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { HiOutlineMail } from 'react-icons/hi';
 import { BsFillPersonLinesFill } from 'react-icons/bs';
@@ -14,6 +15,45 @@ function NavbarMain() {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef(null);  // Create a ref for the menu
   const [menuHeight, setMenuHeight] = useState('0px');
+  const navigate = useNavigate();
+  const location = useLocation(); // Hook to get the location object
+  
+  const handleScrollToContact = useCallback(() => {
+    if (window.location.pathname !== '/') {
+      navigate('/', { state: { scrollToContact: true } });
+    } else {
+      const contactSection = document.getElementById('contact');
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  } , [navigate]);
+
+  
+  useEffect(() => {
+    if (location.state?.scrollToContact) {
+      const contactSection = document.getElementById('contact');
+      if (contactSection) {
+        setTimeout(() => {
+          handleScrollToContact();
+          location.state.scrollToContact = false; // Reset state
+        }, 500); // Delay of 500 milliseconds
+      }
+    }
+  }, [location, handleScrollToContact]);
+  
+
+  const toggleMenu = () => setMenuOpen(!menuOpen);
+  
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 35);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -21,28 +61,15 @@ function NavbarMain() {
         setMenuOpen(false);
       }
     }
-  
     if (menuOpen) {
       document.addEventListener('mousedown', handleClickOutside);
     } else {
       document.removeEventListener('mousedown', handleClickOutside);
     }
-  
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [menuOpen]);
-
-
-  const scrollToContact = () => {
-    const contactSection = document.getElementById('contact');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth', block: 'start'});
-    }
-  };
-
-  
-  const toggleMenu = () => setMenuOpen(!menuOpen);
 
 
   useEffect(() => {
@@ -59,10 +86,8 @@ function NavbarMain() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 35);
     };
-
     // Add the scroll event listener
     window.addEventListener("scroll", handleScroll);
-
     // Remove the event listener on cleanup
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -117,7 +142,7 @@ function NavbarMain() {
           </div>
 
           {/* Action Button */}
-          <Button className="contact-btn" onClick={scrollToContact}>Contact Me</Button>
+          <Button className="contact-btn" onClick={handleScrollToContact}>Contact Me</Button>
         </div>
 
 
@@ -146,7 +171,7 @@ function NavbarMain() {
               </li>
             </ul>
             <div className="mt-4 px-4">
-              <Button className="contact-btn w-full" onClick={() => {toggleMenu(); scrollToContact();}}>Contact Me</Button>
+              <Button className="contact-btn w-full" onClick={() => {toggleMenu(); handleScrollToContact();}}>Contact Me</Button>
             </div>
           {/* Social Icons as Squares */}
           <div className="mt-4 grid grid-cols-2 gap-2 pb-4">

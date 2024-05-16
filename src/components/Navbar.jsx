@@ -166,9 +166,9 @@ function NavbarMain() {
               <li className="text-white text-xl py-2 text-center hover:bg-[#4d6b94] rounded-lg transition duration-200">
                   <a href="/projects" onClick={toggleMenu}>Projects</a>
               </li>
-              <li className="text-white text-xl py-2 text-center hover:bg-[#4d6b94] rounded-lg transition duration-200">
+              <a href="/experiences" className="text-white text-xl py-2 text-center hover:bg-[#4d6b94] rounded-lg transition duration-200">
                   <a href="/experiences" onClick={toggleMenu}>Experiences</a>
-              </li>
+              </a>
             </ul>
             <div className="mt-4 px-4">
               <Button className="contact-btn w-full" onClick={() => {toggleMenu(); handleScrollToContact();}}>Contact Me</Button>

@@ -18,7 +18,7 @@ function Home() {
   };
 
   return (
-    <div>
+    <div id='home'>
       <section>
         <div
           style={gradientStyle}

@@ -126,7 +126,7 @@ function NavbarMain() {
     <Navbar style={navbarStyle} className="fixed top-0 z-50 w-full md:w-auto">
       <div style={navbarBlur} className="flex justify-between items-center w-full">
         {/* Navbar Brand */}
-        <Navbar.Brand href="/" className="flex items-center pl-4">
+        <Navbar.Brand href="/#home" className="flex items-center pl-4">
           <img src={navbarLogo} className="mr-3 h-10 sm:h-12" alt="Aditya Patel Logo" />
           <span className="self-center whitespace-nowrap text-2xl font-semibold text-white">Aditya Patel</span>
         </Navbar.Brand>
@@ -135,7 +135,7 @@ function NavbarMain() {
         <div className="hidden md:flex items-center pr-10">
           {/* Navbar Links */}
           <div className="flex list-none items-center px-10">
-            <Navbar.Link href="/" className="nav-link text-xl text-white px-4 py-2 relative hover:text-white">Home</Navbar.Link>
+            <Navbar.Link href="/#home" className="nav-link text-xl text-white px-4 py-2 relative hover:text-white">Home</Navbar.Link>
             <Navbar.Link href="/about-me" className="nav-link text-xl text-white px-4 py-2 relative">About Me</Navbar.Link>
             <Navbar.Link href="/projects" className="nav-link text-xl text-white px-4 py-2 relative">Projects</Navbar.Link>
             <Navbar.Link href="/experiences" className="nav-link text-xl text-white px-4 py-2 relative">Experiences</Navbar.Link>
@@ -158,7 +158,7 @@ function NavbarMain() {
           <div style={navbarBlur} className="bg-[rgba(0,34,48,0.85)] rounded-lg p-4 w-[90%] max-w-md shadow-lg">
             <ul className="list-none p-0 m-0 space-y-2 px-4">
               <li className="text-white text-xl py-2 text-center hover:bg-[#4d6b94] rounded-lg transition duration-200">
-                  <a href="/" onClick={toggleMenu}>Home</a>
+                  <a href="/#home" onClick={toggleMenu}>Home</a>
               </li>
               <li className="text-white text-xl py-2 text-center hover:bg-[#4d6b94] rounded-lg transition duration-200">
                   <a href="/about-me" onClick={toggleMenu}>About Me</a>

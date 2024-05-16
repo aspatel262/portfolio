@@ -176,19 +176,19 @@ function NavbarMain() {
           {/* Social Icons as Squares */}
           <div className="mt-4 grid grid-cols-2 gap-2 pb-4">
               <a className='relative bg-gradient-to-r from-[#6a11cb] to-[#2575fc] hover:from-blue-600 hover:to-blue-800 hover:scale-105 text-white flex items-center justify-center h-12 rounded-md overflow-hidden group transition duration-200 ease-in-out' href='https://www.linkedin.com/in/adityapatel953/' target="_blank" rel="noopener noreferrer">
-                <span className='absolute opacity-0 group-hover:opacity-100 transition-opacity duration-200'>LinkedIn</span>
+                <span className='absolute opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-center'>LinkedIn</span>
                 <FaLinkedin size={28} className='group-hover:opacity-0 transition-opacity duration-200' />
               </a>
               <a className='relative bg-gradient-to-r from-gray-700 to-gray-600 hover:from-[#555555] hover:to-[#333333] hover:scale-105 text-white flex items-center justify-center h-12 rounded-md overflow-hidden group transition duration-200 ease-in-out' href='https://github.com/aspatel262' target="_blank" rel="noopener noreferrer">
-                <span className='absolute opacity-0 group-hover:opacity-100 transition-opacity duration-200'>Github</span>
+                <span className='absolute opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-center'>Github</span>
                 <FaGithub size={28} className='group-hover:opacity-0 transition-opacity duration-200' />
               </a>
               <a className='relative bg-gradient-to-r from-[#444444] to-[#999999] hover:from-[#999999] hover:to-[#444444] hover:scale-105 text-white flex items-center justify-center h-12 rounded-md overflow-hidden group transition duration-200 ease-in-out' href={res} target="_blank" rel="noopener noreferrer">
-                <span className='absolute opacity-0 group-hover:opacity-100 transition-opacity duration-200'>Download Resume</span>
+                <span className='absolute opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-center'>Download Resume</span>
                 <BsFillPersonLinesFill size={28} className='group-hover:opacity-0 transition-opacity duration-200' />
               </a>
               <a className='relative bg-gradient-to-r from-[#6fc2b0] to-[#28a79f] hover:from-[#28a79f] hover:to-[#6fc2b0] hover:scale-105 text-white flex items-center justify-center h-12 rounded-md overflow-hidden group transition duration-200 ease-in-out' href='mailto:aspatel262@gmail.com'>
-                <span className='absolute opacity-0 group-hover:opacity-100 transition-opacity duration-200'>Send An Email</span>
+                <span className='absolute opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-center'>Send An Email</span>
                 <HiOutlineMail size={28} className='group-hover:opacity-0 transition-opacity duration-200' />
               </a>
             </div>

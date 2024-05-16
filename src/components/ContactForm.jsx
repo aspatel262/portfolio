@@ -14,21 +14,20 @@ const ContactForm = () => {
         email: '',
         subject: '',
         message: '',
-        agreed: false
     });
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prev => ({
             ...prev,
-            [name]: typeof e.target.value === 'checkbox' ? e.target.checked : value
+            [name]: e.target.value === 'checkbox' ? e.target.checked : value
         }));
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (!formData.firstName || !formData.lastName || !formData.email || !formData.subject || !formData.message || !formData.agreed) {
-            alert('Please fill all fields and agree to the terms.');
+        if (!formData.firstName || !formData.lastName || !formData.email || !formData.subject || !formData.message) {
+            alert('Please fill all fields to submit');
             // Add further validation or visual feedback here
             return;
         }
@@ -37,10 +36,10 @@ const ContactForm = () => {
 
     return (
         <div className='flex flex-col md:flex-row items-center justify-center w-full min-h-screen bg-gray-100 md:pt-20 md:pr-20 lg:pl-40 md:pl-20 pt-14 px-5'>
-            <div className={`contact-info-wrapper bg-white shadow-lg p-4 rounded-lg m-4 flex flex-col justify-center transition-all duration-1000 ease-in-out transform ${
+            <div className={`contact-info-wrapper bg-white p-4 rounded-lg m-4 flex flex-col justify-center transition-all duration-1000 ease-in-out transform ${
                   contentVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
             }`}>
-                <h1 className="reach-out text-3xl md:text-4xl font-bold">I love meeting new people,</h1>
+                <h1 className="reach-out text-left text-3xl md:text-4xl font-bold">I love meeting new people,</h1>
                 <h1
                   className="reach-out text-3xl md:text-4xl font-bold"
                   style={{
@@ -56,12 +55,17 @@ const ContactForm = () => {
             <div className={`contact-form-wrapper m-auto transition-all duration-1000 ease-in-out transform ${
                 contentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}>
-                <h2>Fill out the form below!</h2>
                 <form onSubmit={handleSubmit} className="contact-form">
-                    <input type="text" name="firstName" placeholder="First Name" value={formData.firstName} onChange={handleChange} />
-                    <input type="text" name="lastName" placeholder="Last Name" value={formData.lastName} onChange={handleChange} />
-                    <input type="email" name="email" placeholder="What's your email?" value={formData.email} onChange={handleChange} />
-                    <textarea className="h-40" name="message" placeholder="Your questions..." value={formData.message} onChange={handleChange}></textarea>
+                    <div className="flex flex-wrap justify-between">
+                        <input type="text" name="firstName" placeholder="First Name" value={formData.firstName} onChange={handleChange} style={{ width: 'calc(50% - 4px)' }} />
+                        <input type="text" name="lastName" placeholder="Last Name" value={formData.lastName} onChange={handleChange} style={{ width: 'calc(50% - 4px)' }} />
+                    </div>
+                    <div className="flex flex-wrap justify-between">
+                        <input type="email" name="email" placeholder="What's your email?" value={formData.email} onChange={handleChange} style={{ width: 'calc(50% - 4px)', minWidth: '100%' }} />
+                        <input type="text" name="subject" placeholder="Subject" value={formData.subject} onChange={handleChange} style={{ width: 'calc(50% - 4px)', minWidth: '100%' }} />
+                    </div>
+                    <textarea className="h-40" name="message" placeholder="Lets Chat..." value={formData.message} onChange={handleChange}></textarea>
+                    <p className='size-small'>By clicking submit you agree that Aditya may use your personal data (name and e-mail address) to contact you.</p>
                     <button type="submit">Send Message</button>
                 </form>
             </div>
@@ -70,3 +74,4 @@ const ContactForm = () => {
 };
 
 export default ContactForm;
+

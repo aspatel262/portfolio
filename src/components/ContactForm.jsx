@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './comps.css'; // Ensure your CSS file is linked
+import logoFlip from './../assets/contactMemoji.png'
 
 const ContactForm = () => {
     const [contentVisible, setContentVisible] = useState(false);
@@ -39,7 +40,7 @@ const ContactForm = () => {
             <div className={`contact-info-wrapper bg-white p-4 rounded-lg m-4 flex flex-col justify-center transition-all duration-1000 ease-in-out transform ${
                   contentVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
             }`}>
-                <h1 className="reach-out text-left text-3xl md:text-4xl font-bold">I love meeting new people,</h1>
+                <h1 className="reach-out text- text-3xl md:text-4xl font-bold">I love meeting new people,</h1>
                 <h1
                   className="reach-out text-3xl md:text-4xl font-bold"
                   style={{
@@ -50,7 +51,9 @@ const ContactForm = () => {
                 >
                   And I would love to hear from you!
                 </h1>
-                <p>Contact me here and lets connect!</p>
+
+                <img className="w-56 md:w-64 lg:w-72 h-auto rounded-lg transition-all duration-300 ease-in-out hover:scale-105" src={logoFlip} alt="Adi's logo" />
+
             </div>
             <div className={`contact-form-wrapper m-auto transition-all duration-1000 ease-in-out transform ${
                 contentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'

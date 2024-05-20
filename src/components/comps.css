@@ -51,11 +51,9 @@
 
 .contact-info-wrapper {
     background-color: transparent;
-    padding: 2rem;
     text-align:left;
     width: 90%;
     max-width: auto;
-    margin: 25px; /* Center the form horizontally and add more vertical space */
     font-family: Arial, sans-serif;
     display: flex; /* Use flexbox to align children */
     flex-direction: column; /* Stack children vertically */
@@ -155,6 +153,5 @@
     background: linear-gradient(90deg, #002244 0%, #3a96d8 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    font-size: 2em;
     font-weight: bold;
   }

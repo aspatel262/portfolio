@@ -59,6 +59,9 @@
     flex-direction: column; /* Stack children vertically */
     justify-content: center; /* Center content vertically */
     align-items: center; /* Center content horizontally */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    border-radius: 20px;
+    min-height: 605px
 }
 
   /* ContactForm.css *//* ContactForm.css */
@@ -76,7 +79,7 @@
     flex-direction: column; /* Stack children vertically */
     justify-content: center; /* Center content vertically */
     align-items: center; /* Center content horizontally */
-    min-height: 500px;
+    min-height: 600px;
 }
 
 .contact-form-wrapper h2 {
@@ -89,6 +92,7 @@
     font-size: 0.9rem;
     margin-bottom: 1.5rem;
 }
+
 
 .contact-form {
     width: 100%; /* Ensure form elements use full available width */
@@ -129,6 +133,10 @@
     border: 2px solid #ccc;
     border-radius: 10px;
     box-sizing: border-box;
+    
+  color: #6b6b6b;
+  background: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .contact-form button {

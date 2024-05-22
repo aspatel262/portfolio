@@ -62,7 +62,31 @@
   width: 100%; /* Full width on hover */
 }
 
+/* Add this to your styles.css or equivalent */
+.nav-link-inv {
+  color: #2c3e50; /* Set the default color */
+  display: inline-block; /* Necessary for transform */
+  transition: color 0.3s, transform 0.3s; /* Animate color and scaling */
+  text-align: center;
+}
 
+.nav-link-inv::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 3px; /* Adjust height as needed */
+  background: #2c3e50; /* This is the color of the sliding bar */
+  transition: width 0.3s; /* Animate the width of the sliding bar */
+}
+
+.nav-link-inv:hover {
+  color: #2c3e50 !important;  /* Forces the color to remain white on hover */
+  transform: scale(1.10);  /* Scale the element to 103% of its original size */
+}
+
+.nav-link-inv:hover::after {
+  width: 100%; /* Full width on hover */
+}
 
 .powerful-results {
   background: linear-gradient(to right, #F0E2B6 0%, #F0E2B6 50%, #BFC1C2 100%); 
@@ -91,6 +115,21 @@
   background-image: linear-gradient(to right, #ffffff, #f0f0f0); /* Gradient background on hover */
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Optional: Add a shadow for depth */
   color: black; /* Change text color on hover if needed */
+}
+
+.contact-btn-inv {
+  background-color: #2c3e50; /* Normal state background */
+  color: #2c3e50; /* Text color for normal state */
+  border: 2px solid #2c3e50; /* Optional: Gold border to hint at the hover state */
+  transition: all 0.3s ease; /* Transition for smooth effect */
+}
+
+.contact-btn-inv:hover {
+  transform: scale(1.05); /* Slightly increase the size */
+  background-image: linear-gradient(to right, #ffffff, #f0f0f0); /* Gradient background on hover */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Optional: Add a shadow for depth */
+  color: #2c3e50; /* Change text color on hover if needed */
+  border: 2px solid white; /* Optional: Gold border to hint at the hover state */
 }
 
 .sweet {

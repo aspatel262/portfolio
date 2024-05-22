@@ -1,20 +1,20 @@
 import React from 'react';
-import './comps.css'; // Ensure your CSS file is linked
+import '../App.css'; // Ensure your CSS file is linked
 import headshot from '../assets/aboutme/headshot.png'
 
 const AboutMe = () => {
   return (
-    <div id="about-me" className="w-full min-h-screen bg-white flex flex-col items-center md:pt-0">
-      <div className="about-me-container pt-20 flex flex-col md:flex-row items-center justify-between w-full min-h-screen md:pl-44 md:pr-20 p-8 overflow-scroll">
-        <div className="image-container flex items-center justify-center flex-shrink-0 mb-6 md:mb-0 md:mr-6 w-full md:w-2/5">
+    <div id="about-me" className="w-full min-h-screen bg-white flex flex-col items-center">
+      <div className="about-me-container pt-20 flex flex-col md:flex-row items-center justify-between w-full min-h-screen md:pl-44 md:pr-20 p-8 overflow-auto">
+        <div className="image-container flex items-center justify-center flex-shrink-0 mb-6 md:mb-0 md:mr-6 w-full md:w-2/5 md:-rotate-90 md:hover:-rotate-0 md:transition-all md:ease-in-out md:duration-300">
           <img 
             src={headshot}
             alt="Aditya Patel" 
-            className="about-me-image image-container flex-shrink-0 mb-6 md:mb-0 md:w-full w-3/4 h-auto rounded-lg shadow-lg transition-all duration-300 ease-in-out hover:rotate-0 md:rotate-90"
+            className="flex-shrink-0 mb-6 md:mb-0 md:w-full w-3/4 h-auto object-cover"
           />
         </div>
         
-        <div className="text-container w-full md:w-3/5 md:pl-10 md:mt-20 lg:mt-0">
+        <div className="text-container w-full md:w-3/5 md:pl-5 md:mt-20 lg:mt-0">
           <h1 className="text-2xl md:text-3xl lg:text-3xl font-bold mb-4">
             I'm Aditya Patel, a Software Engineer
           </h1>

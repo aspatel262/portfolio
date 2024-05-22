@@ -5,7 +5,7 @@ import headshot from '../assets/aboutme/headshot.png'
 const AboutMe = () => {
   return (
     <div id="about-me" className="w-full min-h-screen bg-white flex flex-col items-center md:pt-0">
-      <div className="about-me-container flex flex-col md:flex-row items-center justify-between w-full min-h-screen md:pl-44 md:pr-20 p-8 overflow-scroll">
+      <div className="about-me-container pt-20 flex flex-col md:flex-row items-center justify-between w-full min-h-screen md:pl-44 md:pr-20 p-8 overflow-scroll">
         <div className="image-container flex items-center justify-center flex-shrink-0 mb-6 md:mb-0 md:mr-6 w-full md:w-2/5">
           <img 
             src={headshot}

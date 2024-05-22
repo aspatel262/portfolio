@@ -166,7 +166,7 @@
 
   /* About Me */
   .about-me-container {
-    background: linear-gradient(to top right, #eaeaea 0%, #d1e7f4 100%);
+    background: linear-gradient(to top left, #eaeaea 0%, #d1e7f4 100%);
   }
   
   .image-container img {

@@ -3,7 +3,7 @@ import { Button } from 'flowbite-react';
 import WavingAnimation from './WavingAnimation'; // Import the WavingAnimation component
 import RadialGradient from './RadialGradient'; // Make sure to import the RadialGradient component
 import ContactForm from './ContactForm';
-import './../App.css'
+import '../App.css'
 
 function Home() {
   const [contentVisible, setContentVisible] = useState(false);

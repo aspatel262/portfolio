@@ -9,7 +9,6 @@ import navbarLogo from '../assets/logo/logo.png';
 import navbarLogoFlip from '../assets/logo/logoFlip.png';
 import { Button, Navbar } from "flowbite-react";
 import "../App.css";
-import './comps.css';
 
 function NavbarMain() {
   const [isScrolled, setIsScrolled] = useState(false);

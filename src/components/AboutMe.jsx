@@ -20,11 +20,13 @@ const AboutMe = () => {
           </h1>
           <p className="text-lg lg:text-xl text-gray-700 mb-4">
             I’ve spent the past few years studying the latest and greatest technologies to pursue my passion in the field of Computer Science. Currently, 
-            I am a student at the University of Michigan Ann Arbor, but my interest in what I do expands far beyond campus. 
+            I am a student at the University of Michigan Ann Arbor, but my interest in what I learn expands far beyond campus. 
           </p>
-          <p className='text-lg lg:text-xl text-gray-700 mb-4'>
-            I come fully prepared with professional experiences, working across different areas of software engineering, machine learning, data science engineering,
-            front end and back end systems development, with the primarily goal focusing on creating impactful, applicable user experiences.
+          <p className="text-lg lg:text-xl text-gray-700 mb-4">
+            Driven by an insatiable curiosity and a constant thirst for learning, I continually seek to explore new areas and deepen my understanding 
+            of the tech world. This curiosity has led me to embrace a variety of professional experiences, working across different areas of software 
+            engineering, machine learning, data science engineering, front-end and back-end systems development. My primary goal is to create impactful,
+            applicable user oriented solutions to problems that make a difference.
           </p>
           <p className="text-lg lg:text-xl text-gray-700 mb-4">
             Outside of my IDE, you will find me pursuing my hobbies. I enjoy playing the electric guitar, viewing the world 

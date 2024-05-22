@@ -5,7 +5,7 @@
 .sidebar-nav {
     @apply 
     hidden 
-    lg:flex 
+    md:flex 
     fixed
     flex-col 
     top-[35%] 
@@ -161,5 +161,38 @@
     background: linear-gradient(90deg, #002244 0%, #3a96d8 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    font-weight: bold;
   }
+
+
+  /* About Me */
+  .about-me-container {
+    background: linear-gradient(to top right, #eaeaea 0%, #d1e7f4 100%);
+  }
+  
+  .image-container img {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+    transition: transform 0.3s ease-in-out;
+  }
+
+
+  .image-container img {
+    transform: rotate(0deg);
+  }
+
+  image-container img:hover {
+    transform: rotate(0deg);
+  }
+  
+  @media (min-width: 768px) {
+    .image-container img {
+      transform: rotate(270deg);
+    }
+  }
+  
+  .text-container h1 {
+    background: linear-gradient(to right, #4facfe 0%, #87cefa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  

@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom'; // Import useNavigate and useLocation
+import { useNavigate, useLocation } from 'react-router-dom';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { HiOutlineMail } from 'react-icons/hi';
 import { BsFillPersonLinesFill } from 'react-icons/bs';
-import { Sling as Hamburger } from 'hamburger-react'
+import { Sling as Hamburger } from 'hamburger-react';
 import res from '../assets/Aditya_Patel_Resume.pdf';
-import navbarLogo from '../assets/logoFlip.png';
+import navbarLogo from '../assets/logo/logo.png';
+import navbarLogoFlip from '../assets/logo/logoFlip.png';
 import { Button, Navbar } from "flowbite-react";
 import "../App.css";
 import './comps.css';
@@ -13,10 +14,10 @@ import './comps.css';
 function NavbarMain() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const menuRef = useRef(null);  // Create a ref for the menu
+  const menuRef = useRef(null);
   const [menuHeight, setMenuHeight] = useState('0px');
   const navigate = useNavigate();
-  const location = useLocation(); // Hook to get the location object
+  const location = useLocation();
   
   const handleScrollToContact = useCallback(() => {
     if (window.location.pathname !== '/') {
@@ -27,24 +28,21 @@ function NavbarMain() {
         contactSection.scrollIntoView({ behavior: 'smooth' });
       }
     }
-  } , [navigate]);
+  }, [navigate]);
 
-  
   useEffect(() => {
     if (location.state?.scrollToContact) {
       const contactSection = document.getElementById('contact');
       if (contactSection) {
         setTimeout(() => {
           handleScrollToContact();
-          location.state.scrollToContact = false; // Reset state
-        }, 500); // Delay of 500 milliseconds
+          location.state.scrollToContact = false;
+        }, 500);
       }
     }
   }, [location, handleScrollToContact]);
-  
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
-  
 
   useEffect(() => {
     const handleScroll = () => {
@@ -53,7 +51,6 @@ function NavbarMain() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -71,7 +68,6 @@ function NavbarMain() {
     };
   }, [menuOpen]);
 
-
   useEffect(() => {
     const menuNode = document.getElementById('mobile-menu');
     if (menuOpen && menuNode) {
@@ -81,74 +77,68 @@ function NavbarMain() {
     }
   }, [menuOpen]);
 
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 35);
-    };
-    // Add the scroll event listener
-    window.addEventListener("scroll", handleScroll);
-    // Remove the event listener on cleanup
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   // Define navbar styles based on scroll state
   const navbarStyle = {
     transition: 'all 0.3s ease-in-out',
-    backgroundColor: isScrolled ? 'rgba(19, 34, 48, 0.85)' : 'transparent', // Adjust the background color to match your page when not scrolled
-    borderRadius: isScrolled ? '30px' : '0',  // Smooth round corners when scrolled
-    boxShadow: isScrolled ? '0 4px 8px rgba(0,0,0,0.25)' : 'none', // Subtle shadow when scrolled
-    border: isScrolled ? '0px solid #ddd' : 'none', // Optional: border to enhance navbar visibility
-    width: isScrolled ? '75%' : '100%', // 75% width when scrolled
-    margin: isScrolled ? '20px auto' : '0 auto', // Automatically center the navbar horizontally when scrolled
-    padding: '10px 0', // Consistent padding
-    display: 'flex', // Ensure flexbox is used for the navbar
-    justifyContent: 'center', // Center the navbar contents horizontally
-    alignItems: 'center', // Center the navbar contents vertically
+    backgroundColor: isScrolled ? 'rgba(19, 34, 48, 0.85)' : 'transparent',
+    borderRadius: isScrolled ? '30px' : '0',
+    boxShadow: isScrolled ? '0 4px 8px rgba(0,0,0,0.25)' : 'none',
+    border: isScrolled ? '0px solid #ddd' : 'none',
+    width: isScrolled ? '75%' : '100%',
+    margin: isScrolled ? '20px auto' : '0 auto',
+    padding: '10px 0',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     left: '0',
     right: '0'
   };
-  
+
   const navbarBlur = {
     transition: 'all 0.3s ease-in-out',
-    borderRadius: isScrolled ? '30px' : '0', // Apply rounded corners
-    border: isScrolled ? '0px solid #ddd' : 'none', // Conditional border
-    width: '100%', // Ensure the blur covers the full navbar width
-    backdropFilter: isScrolled ? 'blur(4px)' : 'none', // Apply blur effect when scrolled
-    WebkitBackdropFilter: isScrolled ? 'blur(4px)' : 'none', // Ensure compatibility with Safari
-    height: '100%', // Ensure the blur covers the full navbar height
+    borderRadius: isScrolled ? '30px' : '0',
+    border: isScrolled ? '0px solid #ddd' : 'none',
+    width: '100%',
+    backdropFilter: isScrolled ? 'blur(4px)' : 'none',
+    WebkitBackdropFilter: isScrolled ? 'blur(4px)' : 'none',
+    height: '100%',
     top: 0,
     left: 0
   };
 
+  const linkStyle = location.pathname === '/about-me' && !isScrolled ? 'nav-link-inv' : 'nav-link text-white';
+  const buttonStyle = location.pathname === '/about-me' && !isScrolled ? 'contact-btn-inv text-#2c3e50' : 'contact-btn';
+  const hmStyle = location.pathname === '/about-me' && !isScrolled ? '#2c3e50' : '#FFFFFF';
 
   return (
     <Navbar style={navbarStyle} className="fixed top-0 z-50 w-full md:w-auto">
       <div style={navbarBlur} className="flex justify-between items-center w-full">
-        {/* Navbar Brand */}
-        <Navbar.Brand href="/#home" className="flex items-center pl-4">
+        {location.pathname !== '/about-me' && <Navbar.Brand href="/#home" className={`flex items-center pl-4 text-white`}>
           <img src={navbarLogo} className="mr-3 h-10 sm:h-12" alt="Aditya Patel Logo" />
-          <span className="self-center whitespace-nowrap text-2xl font-semibold text-white">Aditya Patel</span>
-        </Navbar.Brand>
+          <span className={`self-center whitespace-nowrap text-2xl font-semibold text-white`}>Aditya Patel</span>
+        </Navbar.Brand>}
+        {location.pathname === '/about-me' && isScrolled && <Navbar.Brand href="/#home" className={`flex items-center pl-4 text-white`}>
+          <img src={navbarLogo} className="mr-3 h-10 sm:h-12" alt="Aditya Patel Logo" />
+          <span className={`self-center whitespace-nowrap text-2xl font-semibold text-white`}>Aditya Patel</span>
+        </Navbar.Brand>}
+        {location.pathname === '/about-me' && !isScrolled && <Navbar.Brand href="/#home" className={`flex items-center pl-4 text-white`}>
+          <img src={navbarLogoFlip} className="mr-3 h-10 sm:h-12" alt="Aditya Patel Logo" />
+          <span className={`self-center whitespace-nowrap text-2xl font-semibold text-[#2c3e50]`}>Aditya Patel</span>
+        </Navbar.Brand>}
 
-        {/* Desktop Links and Button */}
         <div className="hidden md:flex items-center pr-10">
-          {/* Navbar Links */}
           <div className="flex list-none items-center px-10">
-            <Navbar.Link href="/#home" className="nav-link text-xl text-white px-4 py-2 relative hover:text-white">Home</Navbar.Link>
-            <Navbar.Link href="/about-me" className="nav-link text-xl text-white px-4 py-2 relative">About Me</Navbar.Link>
-            <Navbar.Link href="/projects" className="nav-link text-xl text-white px-4 py-2 relative">Projects</Navbar.Link>
-            <Navbar.Link href="/experiences" className="nav-link text-xl text-white px-4 py-2 relative">Experiences</Navbar.Link>
+            <Navbar.Link href="/#home" className={`text-xl px-4 py-2 relative hover:text-[#2c3e50] ${linkStyle}`}>Home</Navbar.Link>
+            <Navbar.Link href="/about-me" className={`text-xl px-4 py-2 relative ${linkStyle}`}>About Me</Navbar.Link>
+            <Navbar.Link href="/projects" className={`text-xl px-4 py-2 relative ${linkStyle}`}>Projects</Navbar.Link>
+            <Navbar.Link href="/experiences" className={`text-xl px-4 py-2 relative ${linkStyle}`}>Experiences</Navbar.Link>
           </div>
 
-          {/* Action Button */}
-          <Button className="contact-btn" onClick={handleScrollToContact}>Contact Me</Button>
+          <Button className={`${buttonStyle}`} onClick={handleScrollToContact}>Contact Me</Button>
         </div>
 
-
-        {/* Hamburger Menu Icon */}
         <div className="md:hidden flex items-center pr-4">
-          <Hamburger color="#FFFFFF" duration={0.8} toggled={menuOpen} toggle={toggleMenu} />
+          <Hamburger color={`${hmStyle}`} duration={0.8} toggled={menuOpen} toggle={toggleMenu} />
         </div>
       </div>
 

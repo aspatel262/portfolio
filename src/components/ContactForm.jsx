@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './comps.css'; // Ensure your CSS file is linked
-import logoFlip from './../assets/contactMemoji.png';
+import logoFlip from './../assets/memojis/contactMemoji.png';
 
 const ContactForm = () => {
     const [contentVisible, setContentVisible] = useState(false);
@@ -73,7 +73,7 @@ const ContactForm = () => {
                     And I would love to hear from you!
                 </h1>
                 <img className="w-56 md:w-64 lg:w-72 h-auto rounded-lg transition-all duration-300 ease-in-out hover:scale-105" src={logoFlip} alt="Adi's logo" />
-                <h1 className='reach-out text-3xl md:text-4xl font-bold text-center pt-10' style={{ background: 'linear-gradient(to right, #000000 0%, #333333 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',}}>
+                <h1 className='reach-out text-2xl md:text-3xl font-thin text-center pt-10' style={{ background: 'linear-gradient(to right, #000000 0%, #333333 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',}}>
                     Drop a message, and I'll reach out to you soon.
                 </h1>
             </div>

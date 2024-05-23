@@ -12,6 +12,7 @@ export default function App() {
   return (
     <Router>
        <Navbar />
+       <Analytics/>
         <Routes>
           <Route path="/" element={<Home />} exact />
           <Route path="/contact" element={<Home />} /> {/* Points to Home but scrolls to contact */}

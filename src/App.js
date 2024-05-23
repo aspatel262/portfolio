@@ -1,4 +1,5 @@
 import './App.css';
+import { Analytics } from "@vercel/analytics/react"
 import React from "react";
 import Home from './components/Home.jsx';
 import AboutMe from './components/AboutMe.jsx';

@@ -57,29 +57,14 @@ const ContactForm = () => {
     };
 
     return (
-        <div className='flex flex-col md:flex-row items-center justify-center w-full min-h-screen bg-gray-100 md:pt-20 md:pr-20 lg:pl-40 md:pl-20 pt-14 px-5'>
-            <div className={`contact-info-wrapper p-4 rounded-lg m-4 flex flex-col justify-center transition-all duration-1000 ease-in-out transform ${
-                contentVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
-            }`} style={{ background: 'linear-gradient(to bottom right, #ffffff 0%,  #c2e8ff 100%)'}}>
-                <h1 className="reach-out text-3xl md:text-4xl font-bold text-center p-1.5">I love meeting new people,</h1>
-                <h1
-                    className="reach-out text-3xl md:text-4xl font-bold text-center p-1.5"
-                    style={{
-                        background: 'linear-gradient(to right, #4facfe 0%, #87cefa 100%)',
-                        WebkitBackgroundClip: 'text',
-                        WebkitTextFillColor: 'transparent',
-                    }}
-                >
-                    And I would love to hear from you!
-                </h1>
-                <img className="w-56 md:w-64 lg:w-72 h-auto rounded-lg transition-all duration-300 ease-in-out hover:scale-105" src={logoFlip} alt="Adi's logo" />
-                <h1 className='reach-out text-2xl md:text-3xl italic font-thin text-center pt-10' style={{ background: 'linear-gradient(to right, #4facfe 0%, #002244 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',}}>
-                    Drop a message, and I'll reach out to you soon.
-                </h1>
+        <div className='contact'>
+            <div className={`contact-info-wrapper ${contentVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
+                <h1 className="reach-out">I love meeting new people,</h1>
+                <h1 className="reach-out-2">And I would love to hear from you!</h1>
+                <img className="reach-out-memoji" src={logoFlip} alt="Adi's Memoji holding a phone" />
+                <h1 className="reach-out-3">Drop a message, and I'll reach out to you soon.</h1>
             </div>
-            <div className={`contact-form-wrapper m-auto transition-all duration-1000 ease-in-out transform ${
-                contentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`} style={{ background: 'linear-gradient(to top left, #ffffff 0%,  #d1e7f4 100%)'}}>
+            <div className={`contact-form-wrapper ${contentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                 <form onSubmit={handleSubmit} className="contact-form">
                     <div className="flex flex-wrap justify-between">
                         <input 

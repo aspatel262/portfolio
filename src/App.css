@@ -168,13 +168,13 @@
 }
 
 .home-text-container {
-  @apply flex flex-col items-center md:items-start md:w-2/3 space-y-4 text-center md:text-left px-4 md:px-0 transition-all duration-1000 ease-in-out transform;
+  @apply flex flex-col items-center md:items-stretch md:w-2/3 space-y-4 text-center md:text-left px-4 md:px-0 transition-all duration-1000 ease-in-out transform;
 }
 
 .hello {
-  font-size: 2em;
+  font-size: 1rem;
   font-weight: bold;
-  @apply text-3xl md:text-4xl;
+  @apply text-2xl md:text-3xl;
 }
 
 .hello-adi {
@@ -182,7 +182,7 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: bold;
-  font-size: 2em;
+  font-size: 2rem;
   font-weight: bold;
   @apply text-3xl md:text-4xl;
 }
@@ -219,30 +219,31 @@
 
 /* Buttons */
 .contact-btn {
-  color: white;
-  border: 2px solid white;
+  background: linear-gradient(135deg, #ffffff 0%, #d1e7f4 100%);
+  color: #003366;
+  cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .contact-btn:hover {
-  transform: scale(1.05);
-  background-image: linear-gradient(to right, #ffffff, #f0f0f0);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-  color: black;
+  transform: scale(1.1);
+  color: #4facfe;
+  background: linear-gradient(to right, #ffffff, #d1e7f4);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
 .contact-btn-inv {
-  color: #2c3e50;
-  border: 2px solid #2c3e50;
+  background: linear-gradient(to right, #2c3e50, #415f7c);
+  color: white;
+  cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .contact-btn-inv:hover {
-  transform: scale(1.05);
-  background-image: linear-gradient(to right, #ffffff, #f0f0f0);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-  color: #2c3e50;
-  border: 2px solid #2c3e50;
+  transform: scale(1.1);
+  background: linear-gradient(to right, #2c3e50, #415f7c);
+  color: white;
+  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.5);
   ;
 }
 
@@ -340,7 +341,7 @@
 
 .contact-form button:hover {
   transform: scale(1.1);
-  color: #0883ff;
+  color: #4facfe;
   background-image: linear-gradient(to right, #ffffff, #d1e7f4);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }

@@ -35,8 +35,8 @@ function Home() {
                      my obsession for all things Computer Science. Whether you're a recruiter, someone interested in 
                      my services, or even a friend just looking around,<span className='come-see'>{" "}come check out what I've done.</span>
                   </p>
-                  <div className="flex mt-8">
-                    <Button className="contact-btn" href="/projects">Projects</Button>
+                  <div className="flex mt-8 justify-center">
+                    <Button className="contact-btn md:w-48 w-96" href="/projects">Projects</Button>
                   </div>
               </div>
             </div>

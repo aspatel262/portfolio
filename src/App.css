@@ -445,3 +445,11 @@
 }
 
 /* ----- END Footer ----- */
+
+/* ----- Micro Components ----- */
+
+.waving-animation img {
+  @apply w-64 md:w-72 lg:w-96 h-auto rounded-lg transition-all duration-300 ease-in-out hover:scale-105;
+}
+
+/* ----- END Micro Components ----- */

@@ -53,8 +53,7 @@ function WavingAnimation() {
     <div className="waving-animation"
          onMouseEnter={startAnimation}
          onMouseLeave={reverseAnimation}>
-      <img src={frames[0]} alt="Waving Aditya" 
-           className="w-64 md:w-72 lg:w-96 h-auto rounded-lg transition-all duration-300 ease-in-out hover:scale-105" />
+      <img src={frames[currentFrame]} alt="Waving Aditya" />
     </div>
   );
 }

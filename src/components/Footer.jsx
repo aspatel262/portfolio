@@ -5,7 +5,7 @@ const Footer = () => {
   return (
 
     <footer className="footer">
-      <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
+      <div className="footer-container">
         <p className="text-center md:text-left mb-4 md:mb-0">
           &copy; {new Date().getFullYear()} Aditya Patel. All rights reserved.
         </p>

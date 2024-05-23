@@ -4,7 +4,7 @@ import { FaLinkedin, FaGithub, FaEnvelope } from 'react-icons/fa';
 const Footer = () => {
   return (
 
-    <footer className="bg-[#132230] text-white flex flex-col md:flex-row justify-around items-center gap-10 p-10">
+    <footer className="footer">
       <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
         <p className="text-center md:text-left mb-4 md:mb-0">
           &copy; {new Date().getFullYear()} Aditya Patel. All rights reserved.

@@ -42,7 +42,7 @@
   }
 }
 
-/* Navigation Links */
+/* ----- Navigation Bar ----- */
 .nav-link {
   color: white;
   display: inline-block;
@@ -93,7 +93,38 @@
   width: 100%;
 }
 
-/* Text Styles */
+/* Mobile Menu */
+.mobile-menu {
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  border-radius: 30px;
+  transition: height 0.5s ease, opacity 0.5s ease;
+}
+
+.mobile-menu.open {
+  height: 100%;
+  opacity: 1;
+}
+
+/* Sidebar */
+.sidebar-nav {
+  @apply hidden md:flex fixed flex-col top-[35%] left-0;
+}
+
+
+.sidebar-floating-box {
+  @apply w-[160px] h-[60px] flex justify-between items-center ml-[-100px] hover:ml-[7px] duration-300 bg-gradient-to-tr rounded-2xl;
+}
+
+.sidebar-text {
+  @apply flex justify-between items-center w-full text-white;
+}
+
+/* ----- END Navigation Bar ----- */
+
+/* ----- Home Page ----- */
+
 .powerful-results {
   background: linear-gradient(to right, #F0E2B6 0%, #F0E2B6 50%, #BFC1C2 100%);
   -webkit-background-clip: text;
@@ -161,33 +192,9 @@
   ;
 }
 
-/* Mobile Menu */
-.mobile-menu {
-  height: 0;
-  opacity: 0;
-  overflow: hidden;
-  border-radius: 30px;
-  transition: height 0.5s ease, opacity 0.5s ease;
-}
+/* ----- END Home Page ----- */
 
-.mobile-menu.open {
-  height: 100%;
-  opacity: 1;
-}
-
-/* Sidebar */
-.sidebar-nav {
-  @apply hidden md:flex fixed flex-col top-[35%] left-0;
-}
-
-
-.sidebar-floating-box {
-  @apply w-[160px] h-[60px] flex justify-between items-center ml-[-100px] hover:ml-[7px] duration-300 bg-gradient-to-tr rounded-2xl;
-}
-
-.sidebar-text {
-  @apply flex justify-between items-center w-full text-white;
-}
+/* ----- Contact Page ----- */
 
 /* Contact Form */
 .contact-form-wrapper {
@@ -269,7 +276,10 @@
   min-height: 605px;
 }
 
-/* About Me */
+/* ----- END Contact Page ----- */
+
+/* ----- About Me ----- */
+
 .image-container img {
   animation: slideInFromLeft 1s ease-in-out forwards;
   border-radius: 10px;
@@ -295,9 +305,6 @@
   }
 }
 
-
-
-/* Keyframes for the text container sliding in from below */
 @keyframes slideInFromRight {
   from {
     transform: translateX(-10%);
@@ -332,8 +339,6 @@
   }
 }
 
-/* Ensure initial hidden state */
-/* styles.css or your main CSS file */
 .image-container {
   @apply flex items-center justify-center flex-shrink-0 mb-6 md:mb-0 md:mr-6 w-full md:w-2/5 md:-rotate-90 md:hover:-rotate-0 md:transition-all md:ease-in-out md:duration-300;
 }
@@ -341,7 +346,6 @@
 .image-container img {
   opacity: 0;
 }
-
 
 .about-bolded {
   font-weight: bold;
@@ -423,3 +427,7 @@
   background: linear-gradient(to top left, #eaeaea 0%, #d1e7f4 100%);
   width: max;
 }
+
+/* ----- END About Me ----- */
+
+/* ----- Projects ----- */

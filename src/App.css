@@ -430,4 +430,18 @@
 
 /* ----- END About Me ----- */
 
-/* ----- Projects ----- */
+/* ----- Footer ----- */
+
+.footer {
+  @apply bg-[#132230] text-white flex flex-col md:flex-row justify-around items-center gap-10 p-10;
+}
+
+.footer-container {
+  @apply container mx-auto px-4 flex flex-col md:flex-row justify-between items-center;
+}
+
+.footer-container p {
+  @apply text-center md:text-left mb-4 md:mb-0;
+}
+
+/* ----- END Footer ----- */

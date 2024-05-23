@@ -533,7 +533,7 @@
 }
 
 .footer-container {
-  @apply container mx-auto px-4 flex flex-col md:flex-row justify-between items-center;
+  @apply mx-auto px-4 flex flex-col md:flex-row justify-between items-center;
 }
 
 .footer-container p {

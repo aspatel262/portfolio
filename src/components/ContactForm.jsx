@@ -131,7 +131,7 @@ const ContactForm = () => {
                         }} 
                     ></textarea>
                     {isSubmitted && <div className="text-green-500 mb-4">Whooosh, your message is on its way!</div>}
-                    {!isSubmitted && <p className='size-small'>By clicking submit you agree that Aditya may use your personal data (name and e-mail address) to contact you.</p>}
+                    {!isSubmitted && <p className='disclaimer-text'>By clicking submit you agree that Aditya may use your personal data (name and e-mail address) to contact you.</p>}
                     <button type="submit">Send Message</button>
                 </form>
             </div>

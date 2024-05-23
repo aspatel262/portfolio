@@ -519,7 +519,7 @@
 }
 
 .abme-page {
-  @apply container pt-20 flex flex-col md:flex-row items-center justify-between w-full min-h-screen md:pl-44 md:pr-20 p-8 overflow-auto;
+  @apply pt-20 flex flex-col md:flex-row items-center justify-between w-full min-h-screen md:pl-44 md:pr-20 p-8 overflow-auto;
   background: linear-gradient(to top left, #eaeaea 0%, #d1e7f4 100%);
   width: max;
 }

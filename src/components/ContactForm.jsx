@@ -42,18 +42,20 @@ const ContactForm = () => {
         e.preventDefault();
         const errors = validate();
         setFormErrors(errors);
+        setErrorSubmitted(false);
 
         if (Object.keys(errors).length === 0) {
 
             try {
                 const response = await axios.post('/api/sendEmail', formData);
-                console.log(response);
                 console.log(formData);
                 if (response.status === 200) {
                     setIsSubmitted(true);
+                    setErrorSubmitted(false);
+                    console.log(response.data.success);
                 } else {
                     setErrorSubmitted(true);
-                    console.log('ERROR EMAIL SEND FAILED: ' + response.error);
+                    console.log('ERROR EMAIL SEND FAILED: ' + response.data.error);
                 }
             } catch (error) {
                 console.log('ERROR EMAIL SEND FAILED: ' + error);

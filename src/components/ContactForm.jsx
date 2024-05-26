@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import '../App.css'; // Ensure your CSS file is linked
 import logoFlip from './../assets/memojis/contactMemoji.png';
 
@@ -6,6 +7,7 @@ const ContactForm = () => {
     const [contentVisible, setContentVisible] = useState(false);
     const [formErrors, setFormErrors] = useState({});
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [errorSubmitted, setErrorSubmitted] = useState(false);
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -36,15 +38,29 @@ const ContactForm = () => {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
         const errors = validate();
         setFormErrors(errors);
 
         if (Object.keys(errors).length === 0) {
-            console.log(formData);
-            setIsSubmitted(true);
+
+            try {
+                const response = await axios.post('/api/sendEmail', formData);
+                console.log(response);
+                console.log(formData);
+                if (response.status === 200) {
+                    setIsSubmitted(true);
+                } else {
+                    setErrorSubmitted(true);
+                    console.log('ERROR EMAIL SEND FAILED: ' + response.error);
+                }
+            } catch (error) {
+                console.log('ERROR EMAIL SEND FAILED: ' + error);
+                setErrorSubmitted(true);
+            }
             // Reset form after submission
+            setTimeout(() => setIsSubmitted(false), 3000);
             setFormData({
                 firstName: '',
                 lastName: '',
@@ -52,7 +68,7 @@ const ContactForm = () => {
                 subject: '',
                 message: '',
             });
-            setTimeout(() => setIsSubmitted(false), 3000);
+
         }
     };
 
@@ -131,7 +147,8 @@ const ContactForm = () => {
                         }} 
                     ></textarea>
                     {isSubmitted && <div className="text-green-500 mb-4">Whooosh, your message is on its way!</div>}
-                    {!isSubmitted && <p className='disclaimer-text'>By clicking submit you agree that Aditya may use your personal data (name and e-mail address) to contact you.</p>}
+                    {errorSubmitted && <div className='text-red-300 mb-4'>Error delivering message, please try again</div>}
+                    {!isSubmitted && !errorSubmitted && <p className='disclaimer-text'>By clicking submit you agree that Aditya may use your personal data (name and e-mail address) to contact you.</p>}
                     <button type="submit">Send Message</button>
                 </form>
             </div>

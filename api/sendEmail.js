@@ -1,7 +1,6 @@
 const nodemailer = require('nodemailer');
 
 module.exports = async (req, res) => {
-  console.log(`Received ${req.method} request`);
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }

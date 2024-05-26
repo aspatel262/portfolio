@@ -9,7 +9,7 @@ module.exports = async (req, res) => {
 
   // Create a transporter object using the default SMTP transport
   const transporter = nodemailer.createTransport({
-    host: 'smtp-relay.sendgrid.com',
+    host: 'smtp.sendgrid.com',
     port: 465,
     secure: false, // true for 465, false for other ports
     auth: {

@@ -41,10 +41,10 @@ module.exports = async (req, res) => {
 
     // Email options
     const mailOptions = {
-      from: `${firstName} ${lastName} <${sender}>`,
+      from: `Portfolio Messenger <${EMAIL}>`,
       to: process.env.CONTACT_EMAIL_TO,
-      subject: subject,
-      text: message,
+      subject: `From: ${firstName} ${lastName} \n\n${subject}`,
+      text: `From: ${firstName} ${lastName} <${sender}>\n\n${message}`,
     };
 
     // Send the email

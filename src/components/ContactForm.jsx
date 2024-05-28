@@ -55,7 +55,7 @@ const ContactForm = () => {
                     console.log(response.data.success);
                 } else {
                     setErrorSubmitted(true);
-                    console.log('ERROR EMAIL SEND FAILED: ' + response.data.error);
+                    console.log(response.data.error + ' ' + response.data.details);
                 }
             } catch (error) {
                 console.log('ERROR EMAIL SEND FAILED: ' + error);

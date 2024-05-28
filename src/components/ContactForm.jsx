@@ -45,20 +45,23 @@ const ContactForm = () => {
         setErrorSubmitted(false);
 
         if (Object.keys(errors).length === 0) {
-
             try {
-                const response = await axios.post('/api/sendEmail', formData);
-                console.log(formData);
+                const response = await axios.post('/api/sendEmail', {
+                    firstName: formData.firstName,
+                    lastName: formData.lastName,
+                    email: formData.email,
+                    subject: formData.subject,
+                    message: formData.message,
+                });
+
                 if (response.status === 200) {
                     setIsSubmitted(true);
                     setErrorSubmitted(false);
-                    console.log(response.data.success);
                 } else {
                     setErrorSubmitted(true);
-                    console.log(response.data.error + ' ' + response.data.details);
                 }
             } catch (error) {
-                console.log('ERROR EMAIL SEND FAILED: ' + error);
+                console.error('Error sending email:', error.response.data);
                 setErrorSubmitted(true);
             }
             // Reset form after submission
@@ -70,7 +73,6 @@ const ContactForm = () => {
                 subject: '',
                 message: '',
             });
-
         }
     };
 

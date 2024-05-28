@@ -1,26 +1,49 @@
-const sgMail = require('@sendgrid/mail');
+const nodemailer = require('nodemailer');
+const { google } = require('googleapis');
 
 module.exports = async (req, res) => {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { fName, lName, email, subject, message } = req.body;
+  const { firstName, lastName, email, subject, message } = req.body;
 
-  // Set the SendGrid API key
-  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+  // OAuth2 configuration
+  const CLIENT_ID = process.env.CLIENT_ID;
+  const CLIENT_SECRET = process.env.CLIENT_SECRET;
+  const REDIRECT_URI = 'https://developers.google.com/oauthplayground';
+  const REFRESH_TOKEN = process.env.REFRESH_TOKEN;
+  const EMAIL = process.env.EMAIL;
 
-  // Email options
-  const mailOptions = {
-    from: `${fName} ${lName} <${email}>`, // Dynamic "from" address specified by the form sender
-    to: process.env.CONTACT_EMAIL_TO, // Your email address to receive the message
-    subject: subject, // Subject specified by the form sender
-    text: message, // Message specified by the form sender
-  };
+  const oAuth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
+  oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
 
-  // Send the email
   try {
-    await sgMail.send(mailOptions);
+    const accessToken = await oAuth2Client.getAccessToken();
+
+    // Create a transporter object using the OAuth2 transport
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        type: 'OAuth2',
+        user: EMAIL,
+        clientId: CLIENT_ID,
+        clientSecret: CLIENT_SECRET,
+        refreshToken: REFRESH_TOKEN,
+        accessToken: accessToken.token,
+      },
+    });
+
+    // Email options
+    const mailOptions = {
+      from: `${firstName} ${lastName} <${email}>`, // Dynamic "from" address specified by the form sender
+      to: process.env.CONTACT_EMAIL_TO, // Your email address to receive the message
+      subject: subject, // Subject specified by the form sender
+      text: message, // Message specified by the form sender
+    };
+
+    // Send the email
+    await transporter.sendMail(mailOptions);
     return res.status(200).json({ success: 'Email sent successfully.' });
   } catch (error) {
     console.error('Error sending email:', error);

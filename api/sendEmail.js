@@ -6,7 +6,7 @@ module.exports = async (req, res) => {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { firstName, lastName, email, subject, message } = req.body;
+  const { firstName, lastName, sender, subject, message } = req.body;
 
   // OAuth2 configuration
   const CLIENT_ID = process.env.CLIENT_ID;
@@ -41,7 +41,7 @@ module.exports = async (req, res) => {
 
     // Email options
     const mailOptions = {
-      from: `${firstName} ${lastName} <${email}>`,
+      from: `${firstName} ${lastName} <${sender}>`,
       to: process.env.CONTACT_EMAIL_TO,
       subject: subject,
       text: message,

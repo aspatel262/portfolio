@@ -13,7 +13,7 @@ module.exports = async (req, res) => {
   const CLIENT_SECRET = process.env.CLIENT_SECRET;
   const REDIRECT_URI = 'https://developers.google.com/oauthplayground';
   const REFRESH_TOKEN = process.env.REFRESH_TOKEN;
-  const EMAIL = process.env.EMAIL;
+  const EMAIL = process.env.HOST_EMAIL;
 
   const oAuth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
   oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });

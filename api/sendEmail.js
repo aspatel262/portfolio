@@ -36,17 +36,17 @@ module.exports = async (req, res) => {
 
     // Email options
     const mailOptions = {
-      from: `${firstName} ${lastName} <${email}>`, // Dynamic "from" address specified by the form sender
-      to: process.env.CONTACT_EMAIL_TO, // Your email address to receive the message
-      subject: subject, // Subject specified by the form sender
-      text: message, // Message specified by the form sender
+      from: `${firstName} ${lastName} <${email}>`,
+      to: process.env.CONTACT_EMAIL_TO,
+      subject: subject,
+      text: message,
     };
 
     // Send the email
-    await transporter.sendMail(mailOptions);
-    return res.status(200).json({ success: 'Email sent successfully.' });
+    const result = await transporter.sendMail(mailOptions);
+    return res.status(200).json({ success: 'Email sent successfully.', result });
   } catch (error) {
     console.error('Error sending email:', error);
-    return res.status(500).json({ error: 'Failed to send email.' });
+    return res.status(500).json({ error: 'Failed to send email.', details: error.message });
   }
 };

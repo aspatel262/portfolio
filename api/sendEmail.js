@@ -1,7 +1,6 @@
 const nodemailer = require('nodemailer');
 const { google } = require('googleapis');
 
-
 module.exports = async (req, res) => {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -19,32 +18,36 @@ module.exports = async (req, res) => {
   const oAuth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
   oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
 
-
-  const accessToken = await oAuth2Client.getAccessToken();
-
-  // Create a transporter object using the OAuth2 transport
-  const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      type: 'OAuth2',
-      user: EMAIL,
-      clientId: CLIENT_ID,
-      clientSecret: CLIENT_SECRET,
-      refreshToken: REFRESH_TOKEN,
-      accessToken: accessToken.token,
-    },
-  });
-
-  // Email options
-  const mailOptions = {
-    from: `${firstName} ${lastName} <${email}>`,
-    to: process.env.CONTACT_EMAIL_TO,
-    subject: subject,
-    text: message,
-  };
-
-  // Send the email
   try {
+    const accessToken = await oAuth2Client.getAccessToken();
+
+    if (!accessToken) {
+      console.error('Error: Access token could not be retrieved');
+      return res.status(500).json({ error: 'Failed to retrieve access token' });
+    }
+
+    // Create a transporter object using the OAuth2 transport
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        type: 'OAuth2',
+        user: EMAIL,
+        clientId: CLIENT_ID,
+        clientSecret: CLIENT_SECRET,
+        refreshToken: REFRESH_TOKEN,
+        accessToken: accessToken.token,
+      },
+    });
+
+    // Email options
+    const mailOptions = {
+      from: `${firstName} ${lastName} <${email}>`,
+      to: process.env.CONTACT_EMAIL_TO,
+      subject: subject,
+      text: message,
+    };
+
+    // Send the email
     const result = await transporter.sendMail(mailOptions);
     return res.status(200).json({ success: 'Email sent successfully.', result });
   } catch (error) {

@@ -1,10 +1,16 @@
 import React from 'react';
 import { FaLinkedin, FaGithub, FaEnvelope } from 'react-icons/fa';
+import { useLocation } from 'react-router-dom';
+
 
 const Footer = () => {
+
+  const location = useLocation();
+  const footerStyle = location.pathname === '/projects' ? 'footer-inv' : 'footer';
+
   return (
 
-    <footer className="footer">
+    <footer className={`${footerStyle}`}>
       <div className="footer-container container">
         <p>
           &copy; {new Date().getFullYear()} Aditya Patel. All rights reserved.

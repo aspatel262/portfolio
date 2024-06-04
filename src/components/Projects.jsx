@@ -67,7 +67,7 @@ const Projects = () => {
     return (
         <div className="pt-20 p-8 min-h-screen md:pl-44 md:pr-20 bg-gradient">
             <AnimatedTyping
-                textArray={['Creative', 'Learning Driven', 'Passion', 'Meaningful']}
+                textArray={['Creative', 'Learning Driven', 'Passion Filled', 'Exploratory', 'Experimental']}
                 preText='My '
                 postText="Projects" 
                 fontSize="text-5xl"

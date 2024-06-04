@@ -64,6 +64,50 @@ const Projects = () => {
     const leftColumnProjects = projects.filter((_, index) => index % 2 === 0);
     const rightColumnProjects = projects.filter((_, index) => index % 2 !== 0);
 
+    return (
+        <div className="pt-20 p-8 min-h-screen md:pl-44 md:pr-20 bg-gradient">
+            <AnimatedTyping
+                textArray={['Creative', 'Learning Driven', 'Passion', 'Meaningful']}
+                preText='My '
+                postText="Projects" 
+                fontSize="text-5xl"
+                color="text-white"
+                fontWeight="font-extrabold"
+                padding="pt-10"
+                subtext="Come see the work I've created so far"
+                subtextGradient="linear-gradient(to right, #4facfe 0%, #87cefa 100%)"
+                subtextSize="text-xl"
+                subtextPadding="mt-2"
+            />
+
+            <div className="flex flex-col lg:flex-row lg:w-11/12">
+                <div className="flex-1 flex flex-col lg:pr-5 items-center">
+                    {leftColumnProjects.map((project, index) => (
+                        <motion.div
+                            key={index}
+                            layoutId={project.id}
+                            className="relative w-full md:w-480 bg-white mb-16 shadow-lg cursor-pointer hover:shadow-xl transition-shadow"
+                            style={{ height: '600px', width: '480px' }}
+                            onClick={() => openProjectDetails(project, 2 * index)}
+                        >
+                            <div className="absolute inset-0 flex flex-col justify-end p-4">
+                                <div className="flex justify-center items-center h-auto">
+                                    <img src={projectImages[2 * index]} alt={project.title} className="w-full object-contain rounded-t-lg" />
+                                </div>
+                                <div className="flex flex-col justify-center items-center p-4">
+                                    <h2 className="text-xl text-center font-bold mb-2">{project.title}</h2>
+                                    <p className="text-sm text-center text-gray-700">{project.description}</p>
+                                </div>
+                            </div>
+                        </motion.div>
+                    ))}
+                </div>
+                
+            </div>
+
+            
+        </div>
+    );
 };
 
 export default Projects;

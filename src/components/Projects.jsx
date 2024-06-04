@@ -8,6 +8,7 @@ import imgStudyBuddy from '../assets/project-data/project-image/studybuddy.jpg';
 import imgFreePointer from '../assets/project-data/project-image/freepointer.jpeg';
 import imgPortfolio from '../assets/project-data/project-image/portfolio.png';
 import imgPostClassifier from '../assets/project-data/project-image/postclassifier.png';
+import imgDronePilot from '../assets/project-data/project-image/drone.png';
 
 import beautifulSoupIcon from '../assets/project-data/tech-stack-images/beautiful-soup.svg';
 import flaskIcon from '../assets/project-data/tech-stack-images/flask.svg';
@@ -27,13 +28,18 @@ import cssIcon from '../assets/project-data/tech-stack-images/css-3.svg';
 import cppIcon from '../assets/project-data/tech-stack-images/c++.svg';
 import mlIcon from '../assets/project-data/tech-stack-images/ml.svg';
 import nbIcon from '../assets/project-data/tech-stack-images/classification.svg';
+import unityIcon from '../assets/project-data/tech-stack-images/unity.svg';
+import unrealIcon from '../assets/project-data/tech-stack-images/unreal.svg';
+import numpyIcon from '../assets/project-data/tech-stack-images/numpy.svg';
+import matplotlibIcon from '../assets/project-data/tech-stack-images/matplotlib.svg';
+
 
 const Projects = () => {
     const [selectedProject, setSelectedProject] = useState(null);
     const [imageIdx, setImageIdx] = useState(null);
 
     /*  ##### SET THE ORDER OF IMAGES HERE FOR CORRESPONDING PROJECTS #####  */ 
-    const projectImages = [imgStudyBuddy, imgPostClassifier, imgFreePointer, imgPortfolio ];
+    const projectImages = [imgStudyBuddy, imgPostClassifier, imgFreePointer, imgPortfolio, imgDronePilot ];
     
     /*  ##### ADD ALL TECH STACK ICON OBJECTS HERE #####  */
     const techIcons = {
@@ -55,6 +61,10 @@ const Projects = () => {
         'Naive Bayes Classification Algorithm': nbIcon,
         'Machine Learning': mlIcon,
         'C++': cppIcon,
+        'Unity': unityIcon,
+        'Unreal Engine': unrealIcon,
+        'Matplotlib': matplotlibIcon,
+        'Numpy': numpyIcon,
     };
 
     const openProjectDetails = (project, imgIndex) => {
@@ -97,7 +107,7 @@ const Projects = () => {
                         <motion.div
                             key={index}
                             layoutId={project.id}
-                            className="relative w-full md:w-480 bg-white mb-16 shadow-lg cursor-pointer hover:shadow-xl transition-shadow"
+                            className="relative w-full md:w-480 bg-white mb-16 shadow-lg cursor-pointer hover:scale-105 transition-all ease-in-out duration-300"
                             style={{ height: '600px', width: '480px' }}
                             onClick={() => openProjectDetails(project, 2 * index)}
                         >
@@ -118,7 +128,7 @@ const Projects = () => {
                         <motion.div
                             key={index}
                             layoutId={project.id}
-                            className="relative w-full md:w-480 bg-white mb-20 shadow-lg cursor-pointer hover:shadow-xl transition-shadow"
+                            className="relative w-full md:w-480 bg-white mb-20 shadow-lg cursor-pointer hover:scale-105 transition-all ease-in-out duration-300"
                             style={{ height: '600px', width: '480px' }}
                             onClick={() => openProjectDetails(project, 2 * index + 1)}
                         >
@@ -171,14 +181,14 @@ const Projects = () => {
                                         {selectedProject.details.techStack.map((tech, index) => (
                                             <li key={index} className="tech-stack-item">
                                                 <a href={tech.link} target="_blank" rel="noopener noreferrer" className="tech-stack-link">
-                                                    <img src={techIcons[tech.name]} alt={tech.name} className="tech-stack-icon" />
+                                                    <img src={techIcons[tech.name]} alt={tech.name} className="tech-stack-icon hover:scale-125 transition-all ease-in-out duration-300" />
                                                     <span className="tech-stack-tooltip">{tech.name}</span>
                                                 </a>
                                             </li>
                                         ))}
                                     </ul>
                                 </motion.div>
-                                <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex items-end space-x-4 items-center justify-evenly md:justify-between mb-4">
+                                <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex items-end space-x-4 justify-evenly md:justify-between mb-4">
                                     <div className="flex md:space-x-4 space-x-1">
                                         <a href={selectedProject.details.github} target="_blank" rel="noopener noreferrer" className="mr-4 px-4 py-2 bg-gray-800 text-white rounded transition-transform duration-300 hover:rotate-12 hover:bg-gray-700">GitHub Repository</a>
                                         <a href={selectedProject.details.liveDemo} target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-blue-600 text-white rounded transition-transform duration-300 hover:rotate-12 hover:bg-blue-700">Live Demo</a>

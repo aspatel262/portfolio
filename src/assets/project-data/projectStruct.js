@@ -68,7 +68,21 @@ const projects = [
             ]
         }
     },
-    
+    {
+        title: 'Autonomous Medical Delivery Drone Pilot',
+        description: 'Developed an autonomous drone piloting software capable of navigating complex environments to deliver medical supplies.',
+        details: {
+            description: 'This project was designed as a proof of concept for replacing delivery of medical samples, testing kits, and treatments with the use of autonomous drones in a city-like environment. It was built using PID-controller methodology based on lidar, sonar, and barometric input data for collision avoidance, as well as GPS cordinates for routing. This project was deployed and tested using Unity and Unreal Engine city virtual environments for real physics simulations to test the controller. It is entirely developed using python, including a library to control drone functionality, with Numpy and Matplotlib for data visualization.',
+            github: 'https://github.com/your-repo-link',
+            techStack: [
+                { name: 'Python', link: 'https://python.org' },
+                { name: 'Unity', link: 'https://unity.com/' },
+                { name: 'Unreal Engine', link: 'https://www.unrealengine.com/' },
+                { name: 'Numpy', link: 'https://numpy.org/' },
+                { name: 'Matplotlib', link: 'https://matplotlib.org/' },
+            ]
+        }
+    },
     // Add more projects here...
 ];
 

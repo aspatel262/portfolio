@@ -20,6 +20,20 @@ const projects = [
         },
     },
     {
+        title: 'Course Forum Machine Learning Classifier',
+        description: 'My first ML project, using Naive Bayes reinforcement learning to classify the topic and author of course forum posts',
+        details: {
+            description: 'This project analyzes the topic of student help forum postings and classifies what the post is about using the Naive Bayes classification algorithm. The Naive Bayes algorithm uses calculating log probability scores based on word occurences in training data to make classifications. This project involves handling data preprocessing, training the model, and evaluating its performance to ensure accurate classification. Implemented in C++, the project demonstrates the application of machine learning techniques for text classification.',
+            github: 'https://github.com/aspatel262/p5-ML',
+            liveDemo: 'https://eecs280staff.github.io/p5-ml/',
+            techStack: [
+                { name: 'Naive Bayes Classification Algorithm', link: 'https://en.wikipedia.org/wiki/Naive_Bayes_classifier' },
+                { name: 'Machine Learning', link: 'https://en.wikipedia.org/wiki/Machine_learning' },
+                { name: 'C++', link: 'https://isocpp.org' }
+            ]
+        }
+    },
+    {
         title: 'Chipotle Freepointer Burrito Bot',
         description: 'I designed an automated bot to score free burrito codes during the 2023 NBA Finals. Why, you ask? Because I love chipotle!',
         details: {

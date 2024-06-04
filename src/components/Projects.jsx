@@ -6,7 +6,8 @@ import '../App.css';
 
 import imgStudyBuddy from '../assets/project-data/project-image/studybuddy.jpg';
 import imgFreePointer from '../assets/project-data/project-image/freepointer.jpeg';
-import portfolio from '../assets/project-data/project-image/portfolio.png';
+import imgPortfolio from '../assets/project-data/project-image/portfolio.png';
+import imgPostClassifier from '../assets/project-data/project-image/postclassifier.png';
 
 import beautifulSoupIcon from '../assets/project-data/tech-stack-images/beautiful-soup.svg';
 import flaskIcon from '../assets/project-data/tech-stack-images/flask.svg';
@@ -23,11 +24,18 @@ import gmailIcon from '../assets/project-data/tech-stack-images/gmail.svg';
 import vercelIcon from '../assets/project-data/tech-stack-images/vercel.svg';
 import htmlIcon from '../assets/project-data/tech-stack-images/html-1.svg';
 import cssIcon from '../assets/project-data/tech-stack-images/css-3.svg';
+import cppIcon from '../assets/project-data/tech-stack-images/c++.svg';
+import mlIcon from '../assets/project-data/tech-stack-images/ml.svg';
+import nbIcon from '../assets/project-data/tech-stack-images/classification.svg';
 
 const Projects = () => {
     const [selectedProject, setSelectedProject] = useState(null);
-    const projectImages = [imgStudyBuddy, imgFreePointer, portfolio];
     const [imageIdx, setImageIdx] = useState(null);
+
+    /*  ##### SET THE ORDER OF IMAGES HERE FOR CORRESPONDING PROJECTS #####  */ 
+    const projectImages = [imgStudyBuddy, imgPostClassifier, imgFreePointer, imgPortfolio ];
+    
+    /*  ##### ADD ALL TECH STACK ICON OBJECTS HERE #####  */
     const techIcons = {
         'Beautiful Soup': beautifulSoupIcon,
         'Flask': flaskIcon,
@@ -44,6 +52,9 @@ const Projects = () => {
         'CSS': cssIcon,
         'Gmail API': gmailIcon,
         'Vercel': vercelIcon,
+        'Naive Bayes Classification Algorithm': nbIcon,
+        'Machine Learning': mlIcon,
+        'C++': cppIcon,
     };
 
     const openProjectDetails = (project, imgIndex) => {
@@ -155,7 +166,7 @@ const Projects = () => {
                                 <motion.h2 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="text-2xl font-bold mb-4">{selectedProject.title}</motion.h2>
                                 <motion.p variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="mb-4">{selectedProject.details.description}</motion.p>
                                 <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="mb-4">
-                                    <motion.h3 className="text-xl font-bold mb-2">Tech Stack</motion.h3>
+                                    <motion.h3 className="text-xl text-center font-bold mb-2">Tech Stack</motion.h3>
                                     <ul className="flex flex-wrap tech-stack-list">
                                         {selectedProject.details.techStack.map((tech, index) => (
                                             <li key={index} className="tech-stack-item">
@@ -167,10 +178,10 @@ const Projects = () => {
                                         ))}
                                     </ul>
                                 </motion.div>
-                                <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex items-end justify-between mb-4">
-                                    <div className="flex space-x-4">
-                                    <a href={selectedProject.details.github} target="_blank" rel="noopener noreferrer" className="mr-4 px-4 py-2 bg-gray-800 text-white rounded transition-transform duration-300 hover:rotate-12 hover:bg-gray-700">GitHub Repository</a>
-                                    <a href={selectedProject.details.liveDemo} target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-blue-600 text-white rounded transition-transform duration-300 hover:rotate-12 hover:bg-blue-700">Live Demo</a>
+                                <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex items-end space-x-4 items-center justify-evenly md:justify-between mb-4">
+                                    <div className="flex md:space-x-4 space-x-1">
+                                        <a href={selectedProject.details.github} target="_blank" rel="noopener noreferrer" className="mr-4 px-4 py-2 bg-gray-800 text-white rounded transition-transform duration-300 hover:rotate-12 hover:bg-gray-700">GitHub Repository</a>
+                                        <a href={selectedProject.details.liveDemo} target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-blue-600 text-white rounded transition-transform duration-300 hover:rotate-12 hover:bg-blue-700">Live Demo</a>
                                     </div>
                                     <motion.button onClick={closeProjectDetails} className="px-4 py-2 bg-red-600 text-white rounded transition-transform duration-300 hover:rotate-12 hover:bg-red-700">Close</motion.button>
                                 </motion.div>

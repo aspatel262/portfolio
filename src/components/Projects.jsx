@@ -102,7 +102,27 @@ const Projects = () => {
                         </motion.div>
                     ))}
                 </div>
-                
+                <div className="flex-1 flex lg:pl-5 flex-col items-center mt-0 md:mt-24">
+                    {rightColumnProjects.map((project, index) => (
+                        <motion.div
+                            key={index}
+                            layoutId={project.id}
+                            className="relative w-full md:w-480 bg-white mb-20 shadow-lg cursor-pointer hover:shadow-xl transition-shadow"
+                            style={{ height: '600px', width: '480px' }}
+                            onClick={() => openProjectDetails(project, 2 * index + 1)}
+                        >
+                            <div className="absolute inset-0 flex flex-col justify-end p-4">
+                                <div className="flex justify-center items-center h-auto">
+                                    <img src={projectImages[2 * index + 1]} alt={project.title} className="w-full object-contain rounded-t-lg" />
+                                </div>
+                                <div className="flex flex-col justify-center items-center p-4">
+                                    <h2 className="text-xl text-center font-bold mb-2">{project.title}</h2>
+                                    <p className="text-sm text-center text-gray-700">{project.description}</p>
+                                </div>
+                            </div>
+                        </motion.div>
+                    ))}
+                </div>
             </div>
 
             

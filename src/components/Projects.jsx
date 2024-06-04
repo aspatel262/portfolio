@@ -23,3 +23,47 @@ import gmailIcon from '../assets/project-data/tech-stack-images/gmail.svg';
 import vercelIcon from '../assets/project-data/tech-stack-images/vercel.svg';
 import htmlIcon from '../assets/project-data/tech-stack-images/html-1.svg';
 import cssIcon from '../assets/project-data/tech-stack-images/css-3.svg';
+
+const Projects = () => {
+    const [selectedProject, setSelectedProject] = useState(null);
+    const projectImages = [imgStudyBuddy, imgFreePointer, portfolio];
+    const [imageIdx, setImageIdx] = useState(null);
+    const techIcons = {
+        'Beautiful Soup': beautifulSoupIcon,
+        'Flask': flaskIcon,
+        'Google Gemini 1.5 API': googleGeminiIcon,
+        'Node.js': nodejsIcon,
+        'Python': pythonIcon,
+        'React': reactIcon,
+        'Selenium': seleniumIcon,
+        'TailwindCSS': tailwindcssIcon,
+        'Twilio API': twilioIcon,
+        'Twitter API': twitterIcon,
+        'JavaScript': javascriptIcon,
+        'HTML': htmlIcon,
+        'CSS': cssIcon,
+        'Gmail API': gmailIcon,
+        'Vercel': vercelIcon,
+    };
+
+    const openProjectDetails = (project, imgIndex) => {
+        setSelectedProject(project);
+        setImageIdx(imgIndex);
+    };
+
+    const closeProjectDetails = () => {
+        setSelectedProject(null);
+    };
+
+    const handleBackdropClick = (event) => {
+        if (event.target === event.currentTarget) {
+            closeProjectDetails();
+        }
+    };
+
+    const leftColumnProjects = projects.filter((_, index) => index % 2 === 0);
+    const rightColumnProjects = projects.filter((_, index) => index % 2 !== 0);
+
+};
+
+export default Projects;

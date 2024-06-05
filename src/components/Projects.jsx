@@ -104,7 +104,7 @@ const Projects = () => {
     const rightColumnProjects = projects.filter((_, index) => index % 2 !== 0);
 
     return (
-        <div className="pt-20 p-8 min-h-screen md:pl-44 md:pr-20 bg-gradient w-auto overflow-auto">
+        <div className="projects-container">
             <div className="animated-typing-container"> {/* Adjust this value as needed */}
                 <AnimatedTyping
                     textArray={['Creative', 'Learning Driven', 'Passion Filled', 'Exploratory', 'Experimental']}
@@ -121,21 +121,21 @@ const Projects = () => {
                 />
             </div>
             
-            <div className="flex flex-col lg:flex-row justify-around">
-                <div className="flex-1 flex flex-col lg:pr-10 lg:items-end items-center">
+            <div className="projects-cards-container">
+                <div className="cards-col-1">
                     {leftColumnProjects.map((project, index) => (
                         <motion.div
                             key={index}
                             layoutId={project.id}
-                            className="relative w-full bg-white mb-16 shadow-lg cursor-pointer hover:scale-105 transition-all ease-in-out duration-300"
+                            className="project-card"
                             style={{ height: windowWidth < 640 ? '450px' : '600px', width: windowWidth < 640 ? '300px' : '480px' }}
                             onClick={() => openProjectDetails(project, 2 * index)}
                         >
-                            <div className="absolute inset-0 flex flex-col justify-evenly md:justify-end p-4 md:p-4">
-                                <div className="flex justify-center items-center h-auto">
-                                    <img src={projectImages[2 * index]} alt={project.title} className="w-full object-contain rounded-t-lg" />
+                            <div className="card-content">
+                                <div className="card-image-container">
+                                    <img src={projectImages[2 * index]} alt={project.title} className="project-image" />
                                 </div>
-                                <div className="flex flex-col justify-center items-center pt-4 md:p-4">
+                                <div className="card-text-container">
                                     <h2 className="text-xl text-center font-bold md:mb-2 mb-1">{project.title}</h2>
                                     <p className="text-sm text-center text-gray-700">{project.description}</p>
                                 </div>
@@ -143,20 +143,20 @@ const Projects = () => {
                         </motion.div>
                     ))}
                 </div>
-                <div className="flex-1 flex lg:pl-10 flex-col lg:items-start items-center mt-0 md:mt-24">
+                <div className="cards-col-2">
                     {rightColumnProjects.map((project, index) => (
                         <motion.div
                             key={index}
                             layoutId={project.id}
-                            className="relative w-full bg-white mb-16 shadow-lg cursor-pointer hover:scale-105 transition-all ease-in-out duration-300"
+                            className="project-card"
                             style={{ height: windowWidth < 640 ? '450px' : '600px', width: windowWidth < 640 ? '300px' : '480px' }}
                             onClick={() => openProjectDetails(project, 2 * index + 1)}
                         >
-                            <div className="absolute inset-0 flex flex-col justify-evenly md:justify-end p-4">
-                                <div className="flex justify-center items-center h-auto">
-                                    <img src={projectImages[2 * index + 1]} alt={project.title} className="w-full object-contain rounded-t-lg" />
+                            <div className="card-content">
+                                <div className="card-image-container">
+                                    <img src={projectImages[2 * index + 1]} alt={project.title} className="project-image" />
                                 </div>
-                                <div className="flex flex-col justify-center items-center pt-4 md:p-4">
+                                <div className="card-text-container">
                                     <h2 className="text-xl text-center font-bold md:mb-2 mb-1">{project.title}</h2>
                                     <p className="text-sm text-center text-gray-700">{project.description}</p>
                                 </div>
@@ -170,7 +170,7 @@ const Projects = () => {
                 {selectedProject && (
                     <motion.div 
                         layoutId={selectedProject.id} 
-                        className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-10 pt-12"  // Increased padding to 10
+                        className="selected-project-screen"  // Increased padding to 10
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
@@ -178,7 +178,7 @@ const Projects = () => {
                         onClick={handleBackdropClick}
                     >
                         <motion.div 
-                            className="bg-white p-10 rounded-lg shadow-lg max-w-5xl w-full flex flex-col md:flex-row overflow-y-auto"
+                            className="selected-project-container"
                             initial="hidden"
                             animate="visible"
                             exit="hidden"
@@ -189,31 +189,31 @@ const Projects = () => {
                             style={{ maxHeight: '90vh' }} // Ensure the modal doesn't exceed the viewport height
                         >
 
-                            <div className="flex-shrink-0 flex items-center justify-center">
-                                <motion.img src={projectImages[imageIdx]} alt={selectedProject.title} className="rounded-lg max-w-full md:max-w-sm m-5" initial={{ opacity: 0, y: 100 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.2 }}/>
+                            <div className="selected-project-image-container">
+                                <motion.img src={projectImages[imageIdx]} alt={selectedProject.title} className="selected-project-image" initial={{ opacity: 0, y: 100 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.2 }}/>
                             </div>
-                            <div className="flex-1 flex flex-col mb-4 md:mb-0">
+                            <div className="selected-project-info-container">
                                 <motion.h2 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="text-2xl font-bold mb-4">{selectedProject.title}</motion.h2>
                                 <motion.p variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="mb-4">{selectedProject.details.description}</motion.p>
                                 <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="mb-4">
                                     <motion.h3 className="text-xl text-center font-bold mb-2">Tech Stack</motion.h3>
-                                    <ul className="flex flex-wrap tech-stack-list">
+                                    <ul className="tech-stack-list">
                                         {selectedProject.details.techStack.map((tech, index) => (
                                             <li key={index} className="tech-stack-item">
                                                 <a href={tech.link} target="_blank" rel="noopener noreferrer" className="tech-stack-link">
-                                                    <img src={techIcons[tech.name]} alt={tech.name} className="tech-stack-icon hover:scale-125 transition-all ease-in-out duration-300" />
+                                                    <img src={techIcons[tech.name]} alt={tech.name} className="tech-stack-icon" />
                                                     <span className="proj-tooltip">{tech.name}</span>
                                                 </a>
                                             </li>
                                         ))}
                                     </ul>
                                 </motion.div>
-                                <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex space-x-4 justify-evenly items-center md:justify-between mb-4">
+                                <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="selected-project-buttons-container">
                                     <div className="flex md:space-x-4 space-x-1 justify-center">
-                                        <a href={selectedProject.details.github} onClick={(e) => {if (gitPrivate[imageIdx]) {e.preventDefault(); alert('For Privacy Reasons, this Repository cannot be Public. To learn more about this project, Contact Me!'); }}} target="_blank" rel="noopener noreferrer" className="mr-4 px-4 py-2 bg-gray-800 text-white rounded transition-transform duration-300 hover:rotate-12 hover:bg-gray-700">GitHub Repository</a>
-                                        <a href={selectedProject.details.liveDemo} onClick={(e) => {if (demoSoon[imageIdx]) {e.preventDefault(); alert('Demo Coming Soon!'); }}} target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-blue-600 text-white rounded transition-transform duration-300 hover:rotate-12 hover:bg-blue-700">Live Demo</a>
+                                        <a href={selectedProject.details.github} onClick={(e) => {if (gitPrivate[imageIdx]) {e.preventDefault(); alert('For Privacy Reasons, this Repository cannot be Public. To learn more about this project, Contact Me!'); }}} target="_blank" rel="noopener noreferrer" className="button-github">GitHub Repository</a>
+                                        <a href={selectedProject.details.liveDemo} onClick={(e) => {if (demoSoon[imageIdx]) {e.preventDefault(); alert('Demo Coming Soon!'); }}} target="_blank" rel="noopener noreferrer" className="button-demo">Live Demo</a>
                                     </div>
-                                    <motion.button onClick={closeProjectDetails} className="px-4 py-2 bg-red-600 text-white rounded transition-transform duration-300 hover:rotate-12 hover:bg-red-700">Close</motion.button>
+                                    <motion.button onClick={closeProjectDetails} className="button-close">Close</motion.button>
                                 </motion.div>
                             </div>
                         </motion.div>

@@ -531,11 +531,62 @@
   height: auto;
 }
 
-.bg-gradient {
+.projects-container {
   background: linear-gradient(to bottom right, #1a202c 0%, #1b212d 25%, #1c232e 50%, #1d252f 75%, #202736 100%);
   margin: 0;
-  overflow-x:auto;
-  width: auto;
+  @apply pt-20 p-8 min-h-screen md:pl-44 md:pr-20 w-auto overflow-auto;
+}
+
+.projects-cards-container {
+  @apply flex flex-col lg:flex-row justify-around;
+}
+
+.cards-col-1 {
+  @apply flex-1 flex flex-col lg:pr-10 lg:items-end items-center;
+}
+
+.cards-col-2 {
+  @apply flex-1 flex lg:pl-10 flex-col lg:items-start items-center mt-0 md:mt-24;
+}
+
+.project-card {
+  @apply relative w-full bg-white mb-16 shadow-lg cursor-pointer hover:scale-105 transition-all ease-in-out duration-300;
+}
+
+.card-content {
+  @apply absolute inset-0 flex flex-col justify-evenly md:justify-end p-4 md:p-4;
+}
+
+.card-image-container {
+  @apply flex justify-center items-center h-auto;
+}
+
+.project-image {
+  @apply w-full object-contain rounded-t-lg;
+}
+
+.card-text-container {
+  @apply flex flex-col justify-center items-center pt-4 md:p-4;
+}
+
+.selected-project-screen {
+  @apply fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-10 pt-12;
+}
+
+.selected-project-container {
+  @apply bg-white p-10 rounded-lg shadow-lg max-w-5xl w-full flex flex-col md:flex-row overflow-y-auto;
+}
+
+.selected-project-image-container {
+  @apply flex-shrink-0 flex items-center justify-center;
+}
+
+.selected-project-image {
+  @apply rounded-lg max-w-full md:max-w-sm m-5;
+}
+
+.selected-project-info-container {
+  @apply flex-1 flex flex-col mb-4 md:mb-0;
 }
 
 .tech-stack-list {
@@ -559,6 +610,7 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
+  @apply hover:scale-125 transition-all ease-in-out duration-300;
 }
 
 .proj-tooltip {
@@ -583,13 +635,24 @@
   opacity: 1;
 }
 
-.relative:hover .proj-tooltip {
-  opacity: 1;
-  visibility: visible;
+.selected-project-buttons-container {
+  @apply flex space-x-4 justify-evenly items-center md:justify-between mb-4;
 }
 
+.button-github {
+  @apply mr-4 px-4 py-2 bg-gray-800 text-white rounded transition-transform duration-300 hover:rotate-12 hover:bg-gray-700;
+}
+
+.button-demo {
+  @apply px-4 py-2 bg-blue-600 text-white rounded transition-transform duration-300 hover:rotate-12 hover:bg-blue-700;
+}
+
+.button-close {
+  @apply px-4 py-2 bg-red-600 text-white rounded transition-transform duration-300 hover:rotate-12 hover:bg-red-700;
+}
 
 /* ----- END Projects ----- */
+
 
 /* ----- Footer ----- */
 
@@ -611,6 +674,7 @@
 }
 
 /* ----- END Footer ----- */
+
 
 /* ----- Micro Components ----- */
 

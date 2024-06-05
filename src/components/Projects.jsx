@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import projects from '../assets/project-data/projectStruct';
 import AnimatedTyping from './AnimatedTyping';
@@ -37,9 +37,14 @@ import matplotlibIcon from '../assets/project-data/tech-stack-images/matplotlib.
 const Projects = () => {
     const [selectedProject, setSelectedProject] = useState(null);
     const [imageIdx, setImageIdx] = useState(null);
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
     /*  ##### SET THE ORDER OF IMAGES HERE FOR CORRESPONDING PROJECTS #####  */ 
     const projectImages = [imgStudyBuddy, imgPostClassifier, imgFreePointer, imgPortfolio, imgDronePilot ];
+
+    /* ##### BOOL ARRAY IF GITHUB LINK IS AVAILABLE AND DEMO IS AVAILABLE ##### */
+    const gitPrivate = [false, true, false, false, true];
+    const demoSoon = [true, true, true, true, true];
     
     /*  ##### ADD ALL TECH STACK ICON OBJECTS HERE #####  */
     const techIcons = {
@@ -72,6 +77,19 @@ const Projects = () => {
         setImageIdx(imgIndex);
     };
 
+    useEffect(() => {
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        // Clean up the event listener on component unmount
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
     const closeProjectDetails = () => {
         setSelectedProject(null);
     };
@@ -86,58 +104,60 @@ const Projects = () => {
     const rightColumnProjects = projects.filter((_, index) => index % 2 !== 0);
 
     return (
-        <div className="pt-20 p-8 min-h-screen md:pl-44 md:pr-20 bg-gradient">
-            <AnimatedTyping
-                textArray={['Creative', 'Learning Driven', 'Passion Filled', 'Exploratory', 'Experimental']}
-                preText='My '
-                postText="Projects" 
-                fontSize="text-5xl"
-                color="text-white"
-                fontWeight="font-extrabold"
-                padding="pt-10"
-                subtext="Come see the work I've created so far"
-                subtextGradient="linear-gradient(to right, #4facfe 0%, #87cefa 100%)"
-                subtextSize="text-xl"
-                subtextPadding="mt-2"
-            />
-
-            <div className="flex flex-col lg:flex-row lg:w-11/12">
-                <div className="flex-1 flex flex-col lg:pr-5 items-center">
+        <div className="pt-20 p-8 min-h-screen md:pl-44 md:pr-20 bg-gradient w-auto overflow-auto">
+            <div className="animated-typing-container"> {/* Adjust this value as needed */}
+                <AnimatedTyping
+                    textArray={['Creative', 'Learning Driven', 'Passion Filled', 'Exploratory', 'Experimental']}
+                    preText='My '
+                    postText="Projects" 
+                    fontSize="text-5xl break-all whitespace-normal"
+                    color="text-white"
+                    fontWeight="font-extrabold"
+                    padding="pt-10"
+                    subtext="Come see the work I've created so far"
+                    subtextGradient="linear-gradient(to right, #4facfe 0%, #87cefa 100%)"
+                    subtextSize="text-xl"
+                    subtextPadding="mt-2"
+                />
+            </div>
+            
+            <div className="flex flex-col lg:flex-row justify-around">
+                <div className="flex-1 flex flex-col lg:pr-10 lg:items-end items-center">
                     {leftColumnProjects.map((project, index) => (
                         <motion.div
                             key={index}
                             layoutId={project.id}
-                            className="relative w-full md:w-480 bg-white mb-16 shadow-lg cursor-pointer hover:scale-105 transition-all ease-in-out duration-300"
-                            style={{ height: '600px', width: '480px' }}
+                            className="relative w-full bg-white mb-16 shadow-lg cursor-pointer hover:scale-105 transition-all ease-in-out duration-300"
+                            style={{ height: windowWidth < 640 ? '450px' : '600px', width: windowWidth < 640 ? '300px' : '480px' }}
                             onClick={() => openProjectDetails(project, 2 * index)}
                         >
-                            <div className="absolute inset-0 flex flex-col justify-end p-4">
+                            <div className="absolute inset-0 flex flex-col justify-evenly md:justify-end p-4 md:p-4">
                                 <div className="flex justify-center items-center h-auto">
                                     <img src={projectImages[2 * index]} alt={project.title} className="w-full object-contain rounded-t-lg" />
                                 </div>
-                                <div className="flex flex-col justify-center items-center p-4">
-                                    <h2 className="text-xl text-center font-bold mb-2">{project.title}</h2>
+                                <div className="flex flex-col justify-center items-center pt-4 md:p-4">
+                                    <h2 className="text-xl text-center font-bold md:mb-2 mb-1">{project.title}</h2>
                                     <p className="text-sm text-center text-gray-700">{project.description}</p>
                                 </div>
                             </div>
                         </motion.div>
                     ))}
                 </div>
-                <div className="flex-1 flex lg:pl-5 flex-col items-center mt-0 md:mt-24">
+                <div className="flex-1 flex lg:pl-10 flex-col lg:items-start items-center mt-0 md:mt-24">
                     {rightColumnProjects.map((project, index) => (
                         <motion.div
                             key={index}
                             layoutId={project.id}
-                            className="relative w-full md:w-480 bg-white mb-20 shadow-lg cursor-pointer hover:scale-105 transition-all ease-in-out duration-300"
-                            style={{ height: '600px', width: '480px' }}
+                            className="relative w-full bg-white mb-16 shadow-lg cursor-pointer hover:scale-105 transition-all ease-in-out duration-300"
+                            style={{ height: windowWidth < 640 ? '450px' : '600px', width: windowWidth < 640 ? '300px' : '480px' }}
                             onClick={() => openProjectDetails(project, 2 * index + 1)}
                         >
-                            <div className="absolute inset-0 flex flex-col justify-end p-4">
+                            <div className="absolute inset-0 flex flex-col justify-evenly md:justify-end p-4">
                                 <div className="flex justify-center items-center h-auto">
                                     <img src={projectImages[2 * index + 1]} alt={project.title} className="w-full object-contain rounded-t-lg" />
                                 </div>
-                                <div className="flex flex-col justify-center items-center p-4">
-                                    <h2 className="text-xl text-center font-bold mb-2">{project.title}</h2>
+                                <div className="flex flex-col justify-center items-center pt-4 md:p-4">
+                                    <h2 className="text-xl text-center font-bold md:mb-2 mb-1">{project.title}</h2>
                                     <p className="text-sm text-center text-gray-700">{project.description}</p>
                                 </div>
                             </div>
@@ -182,16 +202,16 @@ const Projects = () => {
                                             <li key={index} className="tech-stack-item">
                                                 <a href={tech.link} target="_blank" rel="noopener noreferrer" className="tech-stack-link">
                                                     <img src={techIcons[tech.name]} alt={tech.name} className="tech-stack-icon hover:scale-125 transition-all ease-in-out duration-300" />
-                                                    <span className="tech-stack-tooltip">{tech.name}</span>
+                                                    <span className="proj-tooltip">{tech.name}</span>
                                                 </a>
                                             </li>
                                         ))}
                                     </ul>
                                 </motion.div>
-                                <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex items-end space-x-4 justify-evenly md:justify-between mb-4">
-                                    <div className="flex md:space-x-4 space-x-1">
-                                        <a href={selectedProject.details.github} target="_blank" rel="noopener noreferrer" className="mr-4 px-4 py-2 bg-gray-800 text-white rounded transition-transform duration-300 hover:rotate-12 hover:bg-gray-700">GitHub Repository</a>
-                                        <a href={selectedProject.details.liveDemo} target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-blue-600 text-white rounded transition-transform duration-300 hover:rotate-12 hover:bg-blue-700">Live Demo</a>
+                                <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex space-x-4 justify-evenly items-center md:justify-between mb-4">
+                                    <div className="flex md:space-x-4 space-x-1 justify-center">
+                                        <a href={selectedProject.details.github} onClick={(e) => {if (gitPrivate[imageIdx]) {e.preventDefault(); alert('For Privacy Reasons, this Repository cannot be Public. To learn more about this project, Contact Me!'); }}} target="_blank" rel="noopener noreferrer" className="mr-4 px-4 py-2 bg-gray-800 text-white rounded transition-transform duration-300 hover:rotate-12 hover:bg-gray-700">GitHub Repository</a>
+                                        <a href={selectedProject.details.liveDemo} onClick={(e) => {if (demoSoon[imageIdx]) {e.preventDefault(); alert('Demo Coming Soon!'); }}} target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-blue-600 text-white rounded transition-transform duration-300 hover:rotate-12 hover:bg-blue-700">Live Demo</a>
                                     </div>
                                     <motion.button onClick={closeProjectDetails} className="px-4 py-2 bg-red-600 text-white rounded transition-transform duration-300 hover:rotate-12 hover:bg-red-700">Close</motion.button>
                                 </motion.div>
@@ -201,6 +221,7 @@ const Projects = () => {
                 )}
             </AnimatePresence>
         </div>
+
     );
 };
 

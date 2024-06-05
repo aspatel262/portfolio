@@ -521,8 +521,21 @@
 
 /* ----- Projects ----- */
 
+.animated-typing-container {
+  min-height: 120px; /* Adjust this value to ensure enough space for two lines */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  height: auto;
+}
+
 .bg-gradient {
   background: linear-gradient(to bottom right, #1a202c 0%, #1b212d 25%, #1c232e 50%, #1d252f 75%, #202736 100%);
+  margin: 0;
+  overflow-x:auto;
+  width: auto;
 }
 
 .tech-stack-list {
@@ -548,7 +561,7 @@
   object-fit: contain;
 }
 
-.tech-stack-tooltip {
+.proj-tooltip {
   visibility: hidden;
   white-space: nowrap; /* Prevent text wrapping */
   background-color: black;
@@ -558,16 +571,21 @@
   padding: 5px 10px; /* Adjust padding for better spacing */
   position: absolute;
   z-index: 1;
-  bottom: 125%; /* Position the tooltip above the icon */
+  bottom: 135%; /* Position the tooltip above the icon */
   left: 50%;
   transform: translateX(-50%);
   opacity: 0;
   transition: opacity 0.3s;
 }
 
-.tech-stack-link:hover .tech-stack-tooltip {
+.tech-stack-link:hover .proj-tooltip {
   visibility: visible;
   opacity: 1;
+}
+
+.relative:hover .proj-tooltip {
+  opacity: 1;
+  visibility: visible;
 }
 
 

@@ -1,26 +1,27 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
-import { Analytics } from "@vercel/analytics/react"
-import Home from './components/Home.jsx';
-import AboutMe from './components/AboutMe.jsx';
+import { Analytics } from "@vercel/analytics/react";
+import Home from './pages/Home.jsx';
+import AboutMe from './pages/AboutMe.jsx';
 import Navbar from './components/Navbar.jsx';
 import Footer from './components/Footer.jsx';
-import Projects from './components/Projects.jsx';
-
+import Projects from './pages/Projects.jsx';
+import Experiences from './pages/Experiences.jsx';
 
 export default function App() {
   return (
     <Router>
-       <Navbar />
-       <Analytics/>
-        <Routes>
-          <Route path="/" element={<Home />} exact />
-          <Route path="/contact" element={<Home />} />
-          <Route path="/about-me" element={<AboutMe />} exact />
-          <Route path="/projects" element={<Projects />} exact />
-        </Routes>
+      <Navbar />
+      <Analytics />
+      <Routes>
+        <Route path="/" element={<Home />} exact />
+        <Route path="/contact" element={<Home />} />
+        <Route path="/about-me" element={<AboutMe />} exact />
+        <Route path="/projects" element={<Projects />} exact />
+        <Route path="/experiences" element={<Experiences />} exact />
+      </Routes>
       <Footer />
     </Router>
-  )
+  );
 }

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import projects from '../assets/project-data/projectStruct';
-import AnimatedTyping from './AnimatedTyping';
 import '../App.css';
 
 import imgStudyBuddy from '../assets/project-data/project-image/studybuddy.jpg';
@@ -34,7 +33,7 @@ import numpyIcon from '../assets/project-data/tech-stack-images/numpy.svg';
 import matplotlibIcon from '../assets/project-data/tech-stack-images/matplotlib.svg';
 
 
-const Projects = () => {
+const ProjectsList = () => {
     const [selectedProject, setSelectedProject] = useState(null);
     const [imageIdx, setImageIdx] = useState(null);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -77,6 +76,10 @@ const Projects = () => {
         setImageIdx(imgIndex);
     };
 
+    const closeProjectDetails = () => {
+        setSelectedProject(null);
+    };
+
     useEffect(() => {
         const handleResize = () => {
             setWindowWidth(window.innerWidth);
@@ -90,10 +93,6 @@ const Projects = () => {
         };
     }, []);
 
-    const closeProjectDetails = () => {
-        setSelectedProject(null);
-    };
-
     const handleBackdropClick = (event) => {
         if (event.target === event.currentTarget) {
             closeProjectDetails();
@@ -104,66 +103,50 @@ const Projects = () => {
     const rightColumnProjects = projects.filter((_, index) => index % 2 !== 0);
 
     return (
-        <div className="projects-container">
-            <div className="animated-typing-container"> {/* Adjust this value as needed */}
-                <AnimatedTyping
-                    textArray={['Creative', 'Learning Driven', 'Passion Filled', 'Exploratory', 'Experimental']}
-                    preText='My '
-                    postText="Projects" 
-                    fontSize="text-5xl break-all whitespace-normal"
-                    color="text-white"
-                    fontWeight="font-extrabold"
-                    padding="pt-10"
-                    subtext="Come see the work I've created so far"
-                    subtextGradient="linear-gradient(to right, #4facfe 0%, #87cefa 100%)"
-                    subtextSize="text-xl"
-                    subtextPadding="mt-2"
-                />
+        <div className="projects-cards-container">
+
+            <div className="cards-col-1">
+                {leftColumnProjects.map((project, index) => (
+                    <motion.div
+                        key={index}
+                        layoutId={project.id}             
+                        className="project-card"
+                        style={{ height: (windowWidth < 640 || (windowWidth >= 1024 && windowWidth < 1400)) ? '450px' : '600px', width: (windowWidth < 640 || (windowWidth >= 1024 && windowWidth < 1400)) ? '300px' : '480px' }}
+                        onClick={() => openProjectDetails(project, 2 * index)}
+                    >
+                        <div className="card-content">
+                            <div className="card-image-container">
+                                <img src={projectImages[2 * index]} alt={project.title} className="project-image" />
+                            </div>
+                            <div className="card-text-container">
+                                <h2 className="text-xl text-center font-bold md:mb-2 mb-1">{project.title}</h2>
+                                <p className="text-sm text-center text-gray-700">{project.description}</p>
+                            </div>
+                        </div>
+                    </motion.div>
+                ))}
             </div>
-            
-            <div className="projects-cards-container">
-                <div className="cards-col-1">
-                    {leftColumnProjects.map((project, index) => (
-                        <motion.div
-                            key={index}
-                            layoutId={project.id}
-                            className="project-card"
-                            style={{ height: windowWidth < 640 ? '450px' : '600px', width: windowWidth < 640 ? '300px' : '480px' }}
-                            onClick={() => openProjectDetails(project, 2 * index)}
-                        >
-                            <div className="card-content">
-                                <div className="card-image-container">
-                                    <img src={projectImages[2 * index]} alt={project.title} className="project-image" />
-                                </div>
-                                <div className="card-text-container">
-                                    <h2 className="text-xl text-center font-bold md:mb-2 mb-1">{project.title}</h2>
-                                    <p className="text-sm text-center text-gray-700">{project.description}</p>
-                                </div>
+
+            <div className="cards-col-2">
+                {rightColumnProjects.map((project, index) => (
+                    <motion.div
+                        key={index}
+                        layoutId={project.id}
+                        className="project-card"
+                        style={{ height: (windowWidth < 640 || (windowWidth >= 1024 && windowWidth < 1400)) ? '450px' : '600px', width: (windowWidth < 640 || (windowWidth >= 1024 && windowWidth < 1400)) ? '300px' : '480px' }}
+                        onClick={() => openProjectDetails(project, 2 * index + 1)}
+                    >
+                        <div className="card-content">
+                            <div className="card-image-container">
+                                <img src={projectImages[2 * index + 1]} alt={project.title} className="project-image" />
                             </div>
-                        </motion.div>
-                    ))}
-                </div>
-                <div className="cards-col-2">
-                    {rightColumnProjects.map((project, index) => (
-                        <motion.div
-                            key={index}
-                            layoutId={project.id}
-                            className="project-card"
-                            style={{ height: windowWidth < 640 ? '450px' : '600px', width: windowWidth < 640 ? '300px' : '480px' }}
-                            onClick={() => openProjectDetails(project, 2 * index + 1)}
-                        >
-                            <div className="card-content">
-                                <div className="card-image-container">
-                                    <img src={projectImages[2 * index + 1]} alt={project.title} className="project-image" />
-                                </div>
-                                <div className="card-text-container">
-                                    <h2 className="text-xl text-center font-bold md:mb-2 mb-1">{project.title}</h2>
-                                    <p className="text-sm text-center text-gray-700">{project.description}</p>
-                                </div>
+                            <div className="card-text-container">
+                                <h2 className="text-xl text-center font-bold md:mb-2 mb-1">{project.title}</h2>
+                                <p className="text-sm text-center text-gray-700">{project.description}</p>
                             </div>
-                        </motion.div>
-                    ))}
-                </div>
+                        </div>
+                    </motion.div>
+                ))}
             </div>
 
             <AnimatePresence>
@@ -225,4 +208,4 @@ const Projects = () => {
     );
 };
 
-export default Projects;
+export default ProjectsList;

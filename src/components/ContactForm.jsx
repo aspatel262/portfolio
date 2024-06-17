@@ -46,7 +46,7 @@ const ContactForm = () => {
 
     if (Object.keys(errors).length === 0) {
         try {
-            const response = await axios.post('/api/sendEmail/sendEmail', {
+            const response = await axios.post('/api/sendEmail', {
                 firstName: formData.firstName,
                 lastName: formData.lastName,
                 sender: formData.email,  // Use 'sender' to match your server-side expectation

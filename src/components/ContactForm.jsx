@@ -38,22 +38,22 @@ const ContactForm = () => {
         }));
     };
 
-    const handleSubmit = async(e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const errors = validate();
         setFormErrors(errors);
         setErrorSubmitted(false);
-
+    
         if (Object.keys(errors).length === 0) {
             try {
                 const response = await axios.post('/api/sendEmail', {
                     firstName: formData.firstName,
                     lastName: formData.lastName,
-                    email: formData.email,
+                    sender: formData.email,  // Use 'sender' to match your server-side expectation
                     subject: formData.subject,
                     message: formData.message,
                 });
-
+    
                 if (response.status === 200) {
                     setIsSubmitted(true);
                     setErrorSubmitted(false);
@@ -61,9 +61,10 @@ const ContactForm = () => {
                     setErrorSubmitted(true);
                 }
             } catch (error) {
-                console.error('Error sending email:', error.response.data);
+                console.error('Error sending email:', error.response?.data || error.message);
                 setErrorSubmitted(true);
             }
+    
             // Reset form after submission
             setTimeout(() => setIsSubmitted(false), 3000);
             setFormData({
@@ -75,6 +76,7 @@ const ContactForm = () => {
             });
         }
     };
+    
 
     return (
         <div className='contact'>

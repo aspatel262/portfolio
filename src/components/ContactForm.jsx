@@ -39,44 +39,44 @@ const ContactForm = () => {
     };
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
-        const errors = validate();
-        setFormErrors(errors);
-        setErrorSubmitted(false);
-    
-        if (Object.keys(errors).length === 0) {
-            try {
-                const response = await axios.post('/api/sendEmail', {
-                    firstName: formData.firstName,
-                    lastName: formData.lastName,
-                    sender: formData.email,  // Use 'sender' to match your server-side expectation
-                    subject: formData.subject,
-                    message: formData.message,
-                });
-    
-                if (response.status === 200) {
-                    setIsSubmitted(true);
-                    setErrorSubmitted(false);
-                } else {
-                    setErrorSubmitted(true);
-                }
-            } catch (error) {
-                console.error('Error sending email:', error.response?.data || error.message);
+    e.preventDefault();
+    const errors = validate();
+    setFormErrors(errors);
+    setErrorSubmitted(false);
+
+    if (Object.keys(errors).length === 0) {
+        try {
+            const response = await axios.post('/api/sendEmail/sendEmail', {
+                firstName: formData.firstName,
+                lastName: formData.lastName,
+                sender: formData.email,  // Use 'sender' to match your server-side expectation
+                subject: formData.subject,
+                message: formData.message,
+            });
+
+            if (response.status === 200) {
+                setIsSubmitted(true);
+                setErrorSubmitted(false);
+            } else {
                 setErrorSubmitted(true);
             }
-    
-            // Reset form after submission
-            setTimeout(() => setIsSubmitted(false), 3000);
-            setFormData({
-                firstName: '',
-                lastName: '',
-                email: '',
-                subject: '',
-                message: '',
-            });
+        } catch (error) {
+            console.error('Error sending email:', error.response?.data || error.message);
+            setErrorSubmitted(true);
         }
-    };
-    
+
+        // Reset form after submission
+        setTimeout(() => setIsSubmitted(false), 3000);
+        setFormData({
+            firstName: '',
+            lastName: '',
+            email: '',
+            subject: '',
+            message: '',
+        });
+    }
+};
+
 
     return (
         <div className='contact'>

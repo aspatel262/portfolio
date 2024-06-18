@@ -75,7 +75,7 @@ const handleSubmit = async (e) => {
 
             const content = `
                 From: ${firstName} ${lastName} <${email}>
-                To: ${process.env.REACT_APP_EMAIL_TO}
+                To: ${process.env.CONTACT_EMAIL_TO}
                 Subject: ${subject}
 
                 ${message}

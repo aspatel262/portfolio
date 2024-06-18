@@ -40,7 +40,7 @@ const ContactForm = () => {
     };
 
     const CLIENT_ID = process.env.REACT_APP_CLIENT_ID_2;
-const API_KEY = process.env.REACT_APP_GMAIL_API_KEY;
+const API_KEY = process.env.REACT_APP_GMAIL_API;
 const SCOPE = 'https://www.googleapis.com/auth/gmail.send';
 
 useEffect(() => {

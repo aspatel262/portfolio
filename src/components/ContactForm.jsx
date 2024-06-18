@@ -39,8 +39,8 @@ const ContactForm = () => {
         }));
     };
 
-    const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
-const API_KEY = process.env.REACT_APP_API_KEY;
+    const CLIENT_ID = process.env.CLIENT_ID_2;
+const API_KEY = process.env.GMAIL_API_KEY;
 const SCOPE = 'https://www.googleapis.com/auth/gmail.send';
 
 useEffect(() => {

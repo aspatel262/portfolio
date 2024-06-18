@@ -55,6 +55,9 @@ useEffect(() => {
             gapi.auth2.init({
                 client_id: CLIENT_ID,
             });
+            console.log('Google API client initialized with client ID:', CLIENT_ID);
+        }).catch(error => {
+            console.error('Error initializing Google API client:', error);
         });
     }
     gapi.load('client:auth2', start);

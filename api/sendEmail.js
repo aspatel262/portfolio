@@ -15,16 +15,15 @@ export default async function handler(req, res) {
   if (req.method === 'POST') {
     const { firstName, lastName, sender, subject, message, code } = req.body;
 
-    // If there is an authorization code, handle OAuth callback
     if (code) {
       try {
         const { tokens } = await oAuth2Client.getToken(code);
         oAuth2Client.setCredentials(tokens);
 
-        // Store the refresh token securely (for simplicity, use a cookie in this example)
+        console.log('Tokens obtained:', tokens);
+
         res.setHeader('Set-Cookie', serialize('refreshToken', tokens.refresh_token, { path: '/' }));
-        console.log('got access token ', tokens);
-        // Continue to send the email with the obtained tokens
+
         return await sendEmail(res, firstName, lastName, sender, subject, message, tokens);
       } catch (error) {
         console.error('Error retrieving access token:', error);
@@ -32,21 +31,19 @@ export default async function handler(req, res) {
       }
     }
 
-    // Check if there is a stored refresh token
     const cookies = parse(req.headers.cookie || '');
     const refreshToken = cookies.refreshToken;
 
     if (!refreshToken) {
-      // Initiate OAuth 2.0 authorization flow
       const authUrl = oAuth2Client.generateAuthUrl({
         access_type: 'offline',
         scope: ['https://www.googleapis.com/auth/gmail.send'],
         prompt: 'consent',
       });
+      console.log('Redirecting to auth URL:', authUrl);
       return res.status(200).json({ url: authUrl });
     }
 
-    // Set credentials with the stored refresh token
     oAuth2Client.setCredentials({ refresh_token: refreshToken });
 
     try {
@@ -88,6 +85,7 @@ async function sendEmail(res, firstName, lastName, sender, subject, message, tok
 
   try {
     const result = await transporter.sendMail(mailOptions);
+    console.log('Email sent:', result);
     return res.status(200).json({ success: 'Email sent successfully.', result });
   } catch (error) {
     console.error('Error sending email:', error);

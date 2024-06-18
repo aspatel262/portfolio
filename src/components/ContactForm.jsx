@@ -39,43 +39,48 @@ const ContactForm = () => {
     };
 
     const handleSubmit = async (e) => {
-    e.preventDefault();
-    const errors = validate();
-    setFormErrors(errors);
-    setErrorSubmitted(false);
-
-    if (Object.keys(errors).length === 0) {
-        try {
+        e.preventDefault();
+        const errors = validate();
+        setFormErrors(errors);
+        setErrorSubmitted(false);
+    
+        if (Object.keys(errors).length === 0) {
+          try {
             const response = await axios.post('/api/sendEmail', {
-                firstName: formData.firstName,
-                lastName: formData.lastName,
-                sender: formData.email,  // Use 'sender' to match your server-side expectation
-                subject: formData.subject,
-                message: formData.message,
+              firstName: formData.firstName,
+              lastName: formData.lastName,
+              sender: formData.email,
+              subject: formData.subject,
+              message: formData.message,
             });
-
-            if (response.status === 200) {
-                setIsSubmitted(true);
-                setErrorSubmitted(false);
+    
+            console.log('Response:', response.data);
+    
+            if (response.data.url) {
+              console.log('Redirecting to auth URL:', response.data.url);
+              window.location.href = response.data.url;
+            } else if (response.status === 200) {
+              setIsSubmitted(true);
+              setErrorSubmitted(false);
             } else {
-                setErrorSubmitted(true);
+              setErrorSubmitted(true);
             }
-        } catch (error) {
+          } catch (error) {
             console.error('Error sending email:', error.response?.data || error.message);
             setErrorSubmitted(true);
-        }
-
-        // Reset form after submission
-        setTimeout(() => setIsSubmitted(false), 3000);
-        setFormData({
+          }
+    
+          setTimeout(() => setIsSubmitted(false), 3000);
+          setFormData({
             firstName: '',
             lastName: '',
             email: '',
             subject: '',
             message: '',
-        });
-    }
-};
+          });
+        }
+      };
+
 
 
     return (

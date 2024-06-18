@@ -39,8 +39,8 @@ const ContactForm = () => {
         }));
     };
 
-    const CLIENT_ID = process.env.CLIENT_ID_2;
-const API_KEY = process.env.GMAIL_API_KEY;
+    const CLIENT_ID = process.env.REACT_APP_CLIENT_ID_2;
+const API_KEY = process.env.REACT_APP_GMAIL_API_KEY;
 const SCOPE = 'https://www.googleapis.com/auth/gmail.send';
 
 useEffect(() => {
@@ -84,7 +84,7 @@ const handleSubmit = async (e) => {
 
             const content = `
                 From: ${firstName} ${lastName} <${email}>
-                To: ${process.env.CONTACT_EMAIL_TO}
+                To: ${process.env.REACT_APP_CONTACT_EMAIL_TO}
                 Subject: ${subject}
 
                 ${message}

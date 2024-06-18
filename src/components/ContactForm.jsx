@@ -44,12 +44,17 @@ const API_KEY = process.env.GMAIL_API_KEY;
 const SCOPE = 'https://www.googleapis.com/auth/gmail.send';
 
 useEffect(() => {
+    setContentVisible(true);
     function start() {
         gapi.client.init({
             apiKey: API_KEY,
             clientId: CLIENT_ID,
             discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest'],
             scope: SCOPE,
+        }).then(() => {
+            gapi.auth2.init({
+                client_id: CLIENT_ID,
+            });
         });
     }
     gapi.load('client:auth2', start);
@@ -63,9 +68,10 @@ const handleSubmit = async (e) => {
 
     if (Object.keys(errors).length === 0) {
         try {
-            if (!gapi.auth2.getAuthInstance().isSignedIn.get()) {
-                await gapi.auth2.getAuthInstance().signIn();
-            }
+            const authInstance = gapi.auth2.getAuthInstance();
+                if (!authInstance.isSignedIn.get()) {
+                    await authInstance.signIn();
+                }
 
             const firstName = formData.firstName;
             const lastName = formData.lastName;

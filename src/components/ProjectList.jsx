@@ -99,18 +99,24 @@ const ProjectsList = () => {
         }
     };
 
+    const [contentVisible, setContentVisible] = useState(false);
+  
+    useEffect(() => {
+      setContentVisible(true);
+    }, []);
+
     const leftColumnProjects = projects.filter((_, index) => index % 2 === 0);
     const rightColumnProjects = projects.filter((_, index) => index % 2 !== 0);
 
     return (
         <div className="projects-cards-container">
 
-            <div className="cards-col-1">
+            <div className={`cards-col-1 ${contentVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
                 {leftColumnProjects.map((project, index) => (
                     <motion.div
                         key={index}
                         layoutId={project.id}             
-                        className="project-card"
+                        className='project-card'
                         style={{ height: (windowWidth < 640 || (windowWidth >= 1024 && windowWidth < 1400)) ? '450px' : '600px', width: (windowWidth < 640 || (windowWidth >= 1024 && windowWidth < 1400)) ? '300px' : '480px' }}
                         onClick={() => openProjectDetails(project, 2 * index)}
                     >
@@ -127,12 +133,12 @@ const ProjectsList = () => {
                 ))}
             </div>
 
-            <div className="cards-col-2">
+            <div className={`cards-col-2 ${contentVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
                 {rightColumnProjects.map((project, index) => (
                     <motion.div
                         key={index}
                         layoutId={project.id}
-                        className="project-card"
+                        className={`project-card ${contentVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}
                         style={{ height: (windowWidth < 640 || (windowWidth >= 1024 && windowWidth < 1400)) ? '450px' : '600px', width: (windowWidth < 640 || (windowWidth >= 1024 && windowWidth < 1400)) ? '300px' : '480px' }}
                         onClick={() => openProjectDetails(project, 2 * index + 1)}
                     >

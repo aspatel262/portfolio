@@ -352,7 +352,7 @@
 .contact-info-wrapper {
   background-color: transparent;
   text-align: left;
-  width: 90%;
+  
   max-width: auto;
   font-family: Arial, sans-serif;
   display: flex;
@@ -546,11 +546,11 @@
 }
 
 .cards-col-1 {
-  @apply flex-1 flex flex-col lg:pr-10 lg:items-end items-center;
+  @apply flex-1 flex flex-col lg:pr-10 lg:items-end items-center transition-all duration-1000 ease-in-out transform;;
 }
 
 .cards-col-2 {
-  @apply flex-1 flex lg:pl-10 flex-col lg:items-start items-center mt-0 lg:mt-24;
+  @apply flex-1 flex lg:pl-10 flex-col lg:items-start items-center mt-0 lg:mt-24 transition-all duration-1000 ease-in-out transform;;
 }
 
 .project-card {

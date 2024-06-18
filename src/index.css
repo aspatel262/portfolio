@@ -24,3 +24,30 @@
       hsla(242, 74%, 61%, 0.8)   
   )!important;
 }
+
+/* Apply styles to the entire app */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(136, 136, 136, 0.5) transparent;
+}
+
+/* For Webkit browsers (Chrome, Safari, etc.) */
+::-webkit-scrollbar {
+  width: 8px; /* Width of the entire scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; /* Transparent background for the scrollbar track */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(136, 136, 136, 0.5); /* Semi-transparent color for the scrollbar thumb */
+  border-radius: 10px; /* Roundness of the scrollbar thumb */
+  border: 2px solid transparent; /* Padding around the thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(85, 85, 85, 0.5); /* Color when hovering over the scrollbar thumb */
+}
+

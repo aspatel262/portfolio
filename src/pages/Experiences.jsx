@@ -1,104 +1,140 @@
-/*
-    File: Experience.jsx
-    Author: Ed Park
-    Copyright: 2023 - Ed Park https://edpark.space
-    Version: 1.0
-*/
+import React, { useState } from "react";
+import Carousel from "react-simply-carousel";
 
-import PropTypes from 'prop-types';
-
-Experience.propTypes = {
-    isSequential: PropTypes.bool.isRequired,
-}
-
-// Example work experience data structure
-const workExp = [
-    {
-        company: "Ford Motor Company",
-        location: "Dearborn, MI",
-        positions: [
-            {
-                title: "Incoming Software Development Engineering Intern - Machine Learning Ops",
-                startDate: "May 2024",
-                endDate: "Present"
-            },
-            {
-                title: "Data Software Engineering Intern",
-                startDate: "May 2023",
-                endDate: "Aug 2023"
-            },
-            {
-                title: "Data Engineering Intern",
-                startDate: "June 2022",
-                endDate: "Aug 2022"
-            },
-            {
-                title: "Blockchain Applied Research Intern",
-                startDate: "June 2021",
-                endDate: "Aug 2021"
-            }
-        ],
-        tasks: [
-            "Designed and developed an algorithm to measure performance of Ford big data queries within Google Cloud Pipeline.",
-            "Launched and trained a statistical analysis model to evaluate run time on big data transfers, queries, or processes.",
-            "Developed competencies in Machine Learning tools such as Google Cloud Platform, Jupyter Notebook, Terraform, and XGBoost.",
-            "Managed and executed machine learning model predictions inputting housing information parameters.",
-            "Obtained proficiencies in Ethereum-based blockchain software tools such as Truffle, Ganache, Solidity, and MetaMask.",
-            "Applied research and findings to build decentralized application (dApp) allowing users to donate cryptocurrency to charities using ReactJS and MetaMask."
-        ]
-    }
+const animalFacts = [
+  { fact: "A group of flamingos is called a 'flamboyance'." },
+  { fact: "The heart of a shrimp is located in its head." },
+  { fact: "A snail can sleep for three years." },
+  { fact: "Elephants are the only animal that can't jump." },
+  { fact: "A rhinoceros's horn is made of hair." }
 ];
 
-export default function Experience({ isSequential }) {
-    return (
-        <ul className={`experience-list ${isSequential ? 'sequential' : 'non-sequential'}`}>
-            {workExp.map((work, id) => (
-                <li key={id} className={`experience-item ${isSequential ? 'sequential-item' : 'non-sequential-item'}`}>
-                    <h3 className={`experience-title ${isSequential ? 'sequential-title' : ''}`}>{work.positions[0].title}</h3>
-                    <div className='experience-details'>
-                        <span className='experience-company'>{work.company}</span>
-                        <span className='experience-location'>{work.location}</span>
-                        {(work.positions.length === 1) ?
-                            (
-                                <DateRange startDate={work.positions[0].startDate} endDate={work.positions[0].endDate} />
-                            )
-                            :
-                            (<ul className='position-list'>
-                                {
-                                    work.positions.map((position, posId) => (
-                                        <li key={posId} className='position-item'>
-                                            <p>{position.title}</p>
-                                            <DateRange startDate={position.startDate} endDate={position.endDate} />
-                                        </li>
-                                    ))
-                                }
-                            </ul>)
-                        }
-                    </div>
-                    <h4 className='roles-title'>Roles and Responsibilities</h4>
-                    <ul className='roles-list'>
-                        {work.tasks.map((task, taskId) => (
-                            <li key={taskId} className='role-item'>
-                                {task}
-                            </li>
-                        ))}
-                    </ul>
-                </li>
-            ))}
-        </ul>
-    );
+function AnimalFactsCarousel() {
+  const [activeSlide, setActiveSlide] = useState(0);
+
+  return (
+    <div style={styles.container}>
+      <Carousel
+        containerProps={{
+          style: {
+            ...styles.carouselContainer,
+          }
+        }}
+        preventScrollOnSwipe
+        swipeTreshold={60}
+        activeSlideIndex={activeSlide}
+        activeSlideProps={{
+          style: styles.activeSlide
+        }}
+        onRequestChange={setActiveSlide}
+        forwardBtnProps={{
+          children: ">",
+          style: styles.navButton
+        }}
+        backwardBtnProps={{
+          children: "<",
+          style: styles.navButton
+        }}
+        dotsNav={{
+          show: true,
+          itemBtnProps: {
+            style: styles.dot
+          },
+          activeItemBtnProps: {
+            style: styles.activeDot
+          }
+        }}
+        itemsToShow={1}
+        speed={400}
+        centerMode
+      >
+        {animalFacts.map((item, index) => (
+          <div
+            style={{
+              ...styles.slide,
+              transform: `rotateY(${index * 36}deg)`
+            }}
+            key={index}
+          >
+            {item.fact}
+          </div>
+        ))}
+      </Carousel>
+    </div>
+  );
 }
 
-// DateRange Component for reference
-DateRange.propTypes = {
-    startDate: PropTypes.string.isRequired,
-    endDate: PropTypes.string.isRequired,
-}
+const styles = {
+  container: {
+    position: "fixed",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: "80%",
+    height: "50%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    background: "rgba(255, 255, 255, 0.9)",
+    borderRadius: "20px",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+    padding: "20px"
+  },
+  carouselContainer: {
+    width: "100%",
+    height: "100%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    overflow: "hidden"
+  },
+  activeSlide: {
+    transform: "scale(1.1)",
+    transition: "transform 0.3s ease"
+  },
+  navButton: {
+    width: 40,
+    height: 40,
+    minWidth: 40,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#007BFF",
+    color: "white",
+    borderRadius: "50%",
+    border: "none",
+    cursor: "pointer",
+    fontSize: "20px",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)"
+  },
+  dot: {
+    height: 12,
+    width: 12,
+    borderRadius: "50%",
+    backgroundColor: "#ddd",
+    border: "none",
+    margin: "0 4px",
+    cursor: "pointer"
+  },
+  activeDot: {
+    height: 12,
+    width: 12,
+    borderRadius: "50%",
+    backgroundColor: "#007BFF",
+    border: "none"
+  },
+  slide: {
+    background: "#f0f0f0",
+    width: 300,
+    height: 300,
+    border: "10px solid white",
+    textAlign: "center",
+    lineHeight: "280px",
+    boxSizing: "border-box",
+    borderRadius: "10px",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+    transition: "transform 0.5s ease"
+  }
+};
 
-function DateRange({ startDate, endDate }) {
-    return (
-        <p className="date-range">
-            {startDate} – {endDate}
-        </p>
-    );
-}
+export default AnimalFactsCarousel;

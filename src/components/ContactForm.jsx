@@ -40,88 +40,89 @@ const ContactForm = () => {
     };
 
     const CLIENT_ID = process.env.REACT_APP_CLIENT_ID_2;
-const API_KEY = process.env.REACT_APP_GMAIL_API;
-const SCOPE = 'https://www.googleapis.com/auth/gmail.send';
+    const API_KEY = process.env.REACT_APP_GMAIL_API_KEY;
+    const SCOPE = 'https://www.googleapis.com/auth/gmail.send';
+    const EMAIL_TO = process.env.REACT_APP_CONTACT_EMAIL_TO;
 
-useEffect(() => {
-    setContentVisible(true);
-    function start() {
-        gapi.client.init({
-            apiKey: API_KEY,
-            clientId: CLIENT_ID,
-            discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest'],
-            scope: SCOPE,
-        }).then(() => {
-            gapi.auth2.init({
-                client_id: CLIENT_ID,
+    useEffect(() => {
+        setContentVisible(true);
+        function start() {
+            gapi.client.init({
+                apiKey: API_KEY,
+                clientId: CLIENT_ID,
+                discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest'],
+                scope: SCOPE,
+            }).then(() => {
+                gapi.auth2.init({
+                    client_id: CLIENT_ID,
+                });
+                console.log('Google API client initialized with client ID:', CLIENT_ID);
+            }).catch(error => {
+                console.error('Error initializing Google API client:', error);
             });
-            console.log('Google API client initialized with client ID:', CLIENT_ID);
-        }).catch(error => {
-            console.error('Error initializing Google API client:', error);
-        });
-    }
-    gapi.load('client:auth2', start);
-}, []);
+        }
+        gapi.load('client:auth2', start);
+    }, []);
 
-const handleSubmit = async (e) => {
-    e.preventDefault();
-    const errors = validate();
-    setFormErrors(errors);
-    setErrorSubmitted(false);
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const errors = validate();
+        setFormErrors(errors);
+        setErrorSubmitted(false);
 
-    if (Object.keys(errors).length === 0) {
-        try {
-            const authInstance = gapi.auth2.getAuthInstance();
+        if (Object.keys(errors).length === 0) {
+            try {
+                const authInstance = gapi.auth2.getAuthInstance();
                 if (!authInstance.isSignedIn.get()) {
                     await authInstance.signIn();
                 }
 
-            const firstName = formData.firstName;
-            const lastName = formData.lastName;
-            const email = formData.email;
-            const subject = formData.subject;
-            const message = formData.message;
+                const firstName = formData.firstName;
+                const lastName = formData.lastName;
+                const email = formData.email;
+                const subject = formData.subject;
+                const message = formData.message;
 
-            const content = `
-                From: ${firstName} ${lastName} <${email}>
-                To: ${process.env.REACT_APP_CONTACT_EMAIL_TO}
-                Subject: ${subject}
+                const content = `
+                    From: ${firstName} ${lastName} <${email}>
+                    To: ${EMAIL_TO}
+                    Subject: ${subject}
 
-                ${message}
-            `;
+                    ${message}
+                `;
 
-            const base64EncodedEmail = btoa(unescape(encodeURIComponent(content)))
-                .replace(/\+/g, '-')
-                .replace(/\//g, '_');
+                const base64EncodedEmail = btoa(unescape(encodeURIComponent(content)))
+                    .replace(/\+/g, '-')
+                    .replace(/\//g, '_');
 
-            const request = gapi.client.gmail.users.messages.send({
-                userId: 'me',
-                resource: {
-                    raw: base64EncodedEmail,
-                },
+                const request = gapi.client.gmail.users.messages.send({
+                    userId: 'me',
+                    resource: {
+                        raw: base64EncodedEmail,
+                    },
+                });
+
+                request.execute((response) => {
+                    console.log('Email sent', response);
+                    setIsSubmitted(true);
+                    setErrorSubmitted(false);
+                });
+
+            } catch (error) {
+                console.error('Error sending email:', error.response?.data || error.message);
+                setErrorSubmitted(true);
+            }
+
+            setTimeout(() => setIsSubmitted(false), 3000);
+            setFormData({
+                firstName: '',
+                lastName: '',
+                email: '',
+                subject: '',
+                message: '',
             });
-
-            request.execute((response) => {
-                console.log('Email sent', response);
-                setIsSubmitted(true);
-                setErrorSubmitted(false);
-            });
-
-        } catch (error) {
-            console.error('Error sending email:', error.response?.data || error.message);
-            setErrorSubmitted(true);
         }
-
-        setTimeout(() => setIsSubmitted(false), 3000);
-        setFormData({
-            firstName: '',
-            lastName: '',
-            email: '',
-            subject: '',
-            message: '',
-        });
-    }
-};
+    };
 
 
 

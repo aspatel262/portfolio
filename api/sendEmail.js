@@ -5,7 +5,7 @@ import { parse } from 'cookie';
 
 const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
-const REDIRECT_URI = process.env.REDIRECT_URI;
+const REDIRECT_URI = 'https://adityapatel.vercel.app/api/oath2callback';
 const EMAIL = process.env.HOST_EMAIL;
 const CONTACT_EMAIL_TO = process.env.CONTACT_EMAIL_TO;
 

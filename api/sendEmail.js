@@ -23,7 +23,7 @@ export default async function handler(req, res) {
 
         // Store the refresh token securely (for simplicity, use a cookie in this example)
         res.setHeader('Set-Cookie', serialize('refreshToken', tokens.refresh_token, { path: '/' }));
-
+        console.log('got access token ', tokens);
         // Continue to send the email with the obtained tokens
         return await sendEmail(res, firstName, lastName, sender, subject, message, tokens);
       } catch (error) {

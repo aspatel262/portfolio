@@ -53,12 +53,16 @@ const ContactForm = () => {
             const subject = formData.subject;
             const message = formData.message;
       
-            const response = await axios.post('/api/send-email', {
-              firstName,
-              lastName,
-              sender: email,
-              subject,
-              message,
+            const response = await axios.post('/api/sendEmail', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                firstName: formData.firstName,
+                lastName: formData.lastName,
+                sender: formData.email,
+                subject: formData.subject,
+                message: formData.message,
             });
       
             if (response.status !== 200) {

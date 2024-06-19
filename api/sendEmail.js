@@ -1,4 +1,5 @@
 const nodemailer = require('nodemailer');
+const moment = require('moment');
 
 const SES_HOST = process.env.SES_HOST;
 const SES_PORT = process.env.SES_PORT;
@@ -7,9 +8,13 @@ const SES_SECRET_ACCESS_KEY = process.env.SES_SECRET_ACCESS_KEY;
 const HOST_EMAIL = process.env.HOST_EMAIL;
 const CONTACT_EMAIL_TO = process.env.CONTACT_EMAIL_TO;
 
+const formatTimestamp = () => {
+  return moment().format('YYYY-MM-DD HH:mm:ss');
+};
+
 module.exports = async (req, res) => {
   console.log('Received request:', req.method);
-  const timestamp = new Date().toISOString();
+  const timestamp = formatTimestamp();
 
   if (req.method === 'POST') {
     const { firstName, lastName, sender, subject, message } = req.body;

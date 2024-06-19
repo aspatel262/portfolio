@@ -1,5 +1,4 @@
 const nodemailer = require('nodemailer');
-const bodyParser = require('body-parser');
 
 const SES_HOST = process.env.SES_HOST;
 const SES_PORT = process.env.SES_PORT;
@@ -10,15 +9,15 @@ const CONTACT_EMAIL_TO = process.env.CONTACT_EMAIL_TO;
 
 module.exports = async (req, res) => {
   console.log('Received request:', req.method);
+  const timestamp = new Date().toISOString();
 
   if (req.method === 'POST') {
     const { firstName, lastName, sender, subject, message } = req.body;
 
     console.log('Request body:', req.body);
-    console.log(firstName, lastName, sender, subject, message);
 
     try {
-      await sendEmail(firstName, lastName, sender, subject, message);
+      await sendEmail(firstName, lastName, sender, subject, message, timestamp);
       console.log('Email sent successfully');
       return res.status(200).json({ success: 'Email sent successfully.' });
     } catch (error) {
@@ -31,7 +30,7 @@ module.exports = async (req, res) => {
   }
 };
 
-async function sendEmail(firstName, lastName, sender, subject, message) {
+async function sendEmail(firstName, lastName, sender, subject, message, timestamp) {
   console.log('Preparing to send email');
 
   const transporter = nodemailer.createTransport({
@@ -47,8 +46,8 @@ async function sendEmail(firstName, lastName, sender, subject, message) {
   const mailOptions = {
     from: `Portfolio Messenger <${HOST_EMAIL}>`,
     to: CONTACT_EMAIL_TO,
-    subject: `From: ${firstName} ${lastName} \n\n${subject}`,
-    text: `From: ${firstName} ${lastName} <${sender}>\n\n$lala`,
+    subject: `[From: ${firstName} ${lastName}] \n\n${subject}`,
+    text: `From: ${firstName} ${lastName} <${sender}>\n ${timestamp} \n\n${message}`,
   };
 
   console.log('Sending email with options:', mailOptions);

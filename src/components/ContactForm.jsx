@@ -59,7 +59,7 @@ const ContactForm = () => {
                 },
                 firstName: formData.firstName,
                 lastName: formData.lastName,
-                email: formData.email,
+                sender: formData.email,
                 subject: formData.subject,
                 message: formData.message,
             });

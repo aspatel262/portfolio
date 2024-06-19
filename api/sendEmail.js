@@ -14,6 +14,7 @@ module.exports = async (req, res) => {
     const { firstName, lastName, sender, subject, message } = req.body;
 
     console.log('Request body:', req.body);
+    console.log(firstName, lastName, sender, subject, message);
 
     try {
       await sendEmail(firstName, lastName, sender, subject, message);

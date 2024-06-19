@@ -53,7 +53,7 @@ const ContactForm = () => {
             const subject = formData.subject;
             const message = formData.message;
       
-            const response = await fetch('/api/send-email', {
+            const response = await axios.post('/api/sendEmail', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',

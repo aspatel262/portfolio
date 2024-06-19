@@ -52,7 +52,7 @@ const ContactForm = () => {
             const email = formData.email;
             const subject = formData.subject;
             const message = formData.message;
-      
+            console.log(formData);
             const response = await axios.post('/api/sendEmail', {
               method: 'POST',
               headers: {

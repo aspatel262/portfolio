@@ -1,4 +1,5 @@
 const nodemailer = require('nodemailer');
+const bodyParser = require('body-parser');
 
 const SES_HOST = process.env.SES_HOST;
 const SES_PORT = process.env.SES_PORT;

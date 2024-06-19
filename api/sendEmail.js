@@ -1,59 +1,20 @@
-import { google } from 'googleapis';
 import nodemailer from 'nodemailer';
 import { serialize } from 'cookie';
 import { parse } from 'cookie';
 
-const CLIENT_ID = process.env.CLIENT_ID;
-const CLIENT_SECRET = process.env.CLIENT_SECRET;
-const REDIRECT_URI = 'https://adityapatel.vercel.app/api/oath2callback';
-const EMAIL = process.env.HOST_EMAIL;
+const SES_HOST = process.env.SES_HOST;
+const SES_PORT = process.env.SES_PORT;
+const SES_ACCESS_KEY_ID = process.env.SES_ACCESS_KEY_ID;
+const SES_SECRET_ACCESS_KEY = process.env.SES_SECRET_ACCESS_KEY;
+const EMAIL = process.env.EMAIL;
 const CONTACT_EMAIL_TO = process.env.CONTACT_EMAIL_TO;
-
-const oAuth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
-    const { firstName, lastName, sender, subject, message, code } = req.body;
-
-    if (code) {
-      try {
-        const { tokens } = await oAuth2Client.getToken(code);
-        oAuth2Client.setCredentials(tokens);
-
-        console.log('Tokens obtained:', tokens);
-
-        res.setHeader('Set-Cookie', serialize('refreshToken', tokens.refresh_token, { path: '/' }));
-
-        return await sendEmail(res, firstName, lastName, sender, subject, message, tokens);
-      } catch (error) {
-        console.error('Error retrieving access token:', error);
-        return res.status(500).json({ error: 'Failed to retrieve access token.' });
-      }
-    }
-
-    const cookies = parse(req.headers.cookie || '');
-    const refreshToken = cookies.refreshToken;
-
-    if (!refreshToken) {
-      const authUrl = oAuth2Client.generateAuthUrl({
-        access_type: 'offline',
-        scope: ['https://www.googleapis.com/auth/gmail.send'],
-        prompt: 'consent',
-      });
-      console.log('Redirecting to auth URL:', authUrl);
-      return res.status(200).json({ url: authUrl });
-    }
-
-    oAuth2Client.setCredentials({ refresh_token: refreshToken });
+    const { firstName, lastName, sender, subject, message } = req.body;
 
     try {
-      const accessTokenResponse = await oAuth2Client.getAccessToken();
-      if (!accessTokenResponse.token) {
-        console.error('Error: Access token could not be retrieved');
-        return res.status(500).json({ error: 'Failed to retrieve access token.' });
-      }
-
-      return await sendEmail(res, firstName, lastName, sender, subject, message, { access_token: accessTokenResponse.token });
+      return await sendEmail(res, firstName, lastName, sender, subject, message);
     } catch (error) {
       console.error('Error sending email:', error);
       return res.status(500).json({ error: 'Failed to send email.', details: error.message });
@@ -63,16 +24,14 @@ export default async function handler(req, res) {
   }
 }
 
-async function sendEmail(res, firstName, lastName, sender, subject, message, tokens) {
+async function sendEmail(res, firstName, lastName, sender, subject, message) {
   const transporter = nodemailer.createTransport({
-    service: 'gmail',
+    host: SES_HOST,
+    port: SES_PORT,
+    secure: false, // Use true for 465, false for other ports
     auth: {
-      type: 'OAuth2',
-      user: EMAIL,
-      clientId: CLIENT_ID,
-      clientSecret: CLIENT_SECRET,
-      refreshToken: tokens.refresh_token,
-      accessToken: tokens.access_token,
+      user: SES_ACCESS_KEY_ID,
+      pass: SES_SECRET_ACCESS_KEY,
     },
   });
 

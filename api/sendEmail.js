@@ -46,7 +46,7 @@ async function sendEmail(firstName, lastName, sender, subject, message) {
     from: `Portfolio Messenger <${HOST_EMAIL}>`,
     to: CONTACT_EMAIL_TO,
     subject: `From: ${firstName} ${lastName} \n\n${subject}`,
-    text: `From: ${firstName} ${lastName} <${sender}>\n\n${message}`,
+    text: `From: ${firstName} ${lastName} <${sender}>\n\n$lala`,
   };
 
   console.log('Sending email with options:', mailOptions);

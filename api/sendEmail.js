@@ -51,6 +51,7 @@ async function sendEmail(firstName, lastName, sender, subject, message, timestam
   const mailOptions = {
     from: `Portfolio Messenger <${HOST_EMAIL}>`,
     to: CONTACT_EMAIL_TO,
+    replyTo: `${sender}`,
     subject: `[From: ${firstName} ${lastName}] \n\n${subject}`,
     text: `From: ${firstName} ${lastName} <${sender}>\n ${timestamp} \n\n${message}`,
   };

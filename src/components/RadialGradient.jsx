@@ -24,7 +24,7 @@ const RadialGradient = ({ scale, opacity, position, overflow }) => {
     };
   }, []);
 
-  const gradientRadius = '50%'; // Smaller radius for a more focused gradient effect
+  const gradientRadius = '20%'; // Smaller radius for a more focused gradient effect
 
   const radialGradientStyle = {
     background: `radial-gradient(circle at ${mouseXpercentage}% ${mouseYpercentage}%, #003366, #2c3e50 ${gradientRadius})`,

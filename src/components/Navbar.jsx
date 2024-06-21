@@ -136,7 +136,7 @@ function NavbarMain() {
             <Navbar.Link href="/experiences" className={`text-xl px-4 py-2 relative ${linkStyle}`}>Experiences</Navbar.Link>
           </div>
 
-          <Button className={`${buttonStyle}`} onClick={handleScrollToContact}>Contact Me</Button>
+          <button className={`${buttonStyle}`} onClick={handleScrollToContact}>Contact Me</button>
         </div>
 
         <div className="md:hidden flex items-center pr-4">
@@ -163,7 +163,7 @@ function NavbarMain() {
               </li>
             </ul>
             <div className="mt-4 px-4">
-              <Button className="contact-btn w-full" onClick={() => {toggleMenu(); handleScrollToContact();}}>Contact Me</Button>
+              <button className="contact-btn w-full" onClick={() => {toggleMenu(); handleScrollToContact();}}>Contact Me</button>
             </div>
           {/* Social Icons as Squares */}
           <div className="mt-4 grid grid-cols-2 gap-2 pb-4">

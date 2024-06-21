@@ -35,7 +35,7 @@ function Landing() {
                     my services, or even a friend just looking around,<span className='come-see'>{" "}come check out what I've done.</span>
                 </p>
                 <div className="flex mt-8 justify-center">
-                    <Button className="contact-btn md:w-48 w-96" href="/projects">Projects</Button>
+                    <button className="contact-btn md:w-48 w-96" href="/projects">Projects</button>
                 </div>
             </div>
             </div>

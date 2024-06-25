@@ -6,7 +6,7 @@ import { useLocation } from 'react-router-dom';
 const Footer = () => {
 
   const location = useLocation();
-  const footerStyle = location.pathname === '/projects' ? 'footer-inv' : 'footer';
+  const footerStyle = location.pathname === '/projects' || location.pathname === '/about-me' ? 'footer-inv' : 'footer';
 
   return (
 

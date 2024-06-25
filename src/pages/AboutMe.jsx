@@ -1,5 +1,6 @@
 import React from 'react';
 import AboutLanding from '../components/AboutLanding';
+import PhotoGrid from '../components/PhotoGrid';
 import '../App.css'; // Ensure your CSS file is linked
 
 const AboutMe = () => {
@@ -9,6 +10,9 @@ const AboutMe = () => {
         <div className="abme">
           <AboutLanding />
         </div>
+      </section>
+      <section id="photo-grid">
+          <PhotoGrid />
       </section>
 
     </div>

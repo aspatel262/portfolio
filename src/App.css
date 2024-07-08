@@ -869,3 +869,34 @@
 .btn:hover .btn__fill {
   background: var(--subtext);
 }
+
+/* Add this CSS to your main CSS file or inside a <style> tag in your component file */
+@keyframes slideIn {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+.animate-in {
+  animation: slideIn 1s forwards;
+}
+
+.animate-out {
+  animation: slideOut 1s forwards;
+}

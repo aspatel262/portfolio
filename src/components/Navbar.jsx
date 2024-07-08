@@ -7,7 +7,7 @@ import { Sling as Hamburger } from 'hamburger-react';
 import res from '../assets/Aditya_Patel_Resume.pdf';
 import navbarLogo from '../assets/logo/logo.png';
 import navbarLogoFlip from '../assets/logo/logoFlip.png';
-import { Button, Navbar } from "flowbite-react";
+import { Navbar } from "flowbite-react";
 
 import SocialSidebar from './SocialSidebar';
 import "../App.css";

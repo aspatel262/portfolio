@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { gapi } from 'gapi-script';
 import '../App.css'; // Ensure your CSS file is linked
 import logoFlip from './../assets/memojis/contactMemoji.png';
 
@@ -47,11 +46,6 @@ const ContactForm = () => {
       
         if (Object.keys(errors).length === 0) {
           try {
-            const firstName = formData.firstName;
-            const lastName = formData.lastName;
-            const email = formData.email;
-            const subject = formData.subject;
-            const message = formData.message;
       
             const response = await axios.post('/api/sendEmail', {
                 method: 'POST',

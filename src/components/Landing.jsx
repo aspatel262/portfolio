@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Button } from 'flowbite-react';
 
 import WavingAnimation from './WavingAnimation'; // Import the WavingAnimation component
 import RadialGradient from './RadialGradient'; // Make sure to import the RadialGradient component

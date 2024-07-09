@@ -15,7 +15,7 @@ function Landing() {
     return (
         <div className="home">
 
-            <RadialGradient scale="scale-100" opacity="opacity-25" position="top-0" overflow="overflow-visible" />
+            <RadialGradient scale="scale-100" opacity="opacity-0" position="top-0" overflow="overflow-visible" />
 
             <div className="landing-page">
             <div className={`home-container ${contentVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`} >

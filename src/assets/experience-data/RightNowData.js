@@ -1,19 +1,24 @@
 // rightNowData.js
-import image1 from '../aboutme/headshot.png';
-import image2 from '../aboutme/headshot.png';
-import image3 from '../aboutme/headshot.png';
+import Friends from './friends.png';
+import Golf from './golf.png';
+import Basketball from './basketball.png'
+import Guitar from './guitar.png';
 
 export const rightNowData = [
   {
-    image: image1,
-    caption: 'Exploring the mountains and enjoying the breathtaking views.'
+    image: Guitar,
+    caption: 'Relearning my Electric Guitar after first playing in middle school - Currently learning the Hotel California solo!'
   },
   {
-    image: image2,
-    caption: 'Working on a new exciting project in the tech space.'
+    image: Friends,
+    caption: 'Getting my Machine Learning and Advance Learning Algorithms certifications while learning Neural Network Architecture (Enjoy a picture of my friends having a cookout instead (= )'
   },
   {
-    image: image3,
-    caption: 'Spending quality time with family and friends.'
+    image: Golf,
+    caption: 'Fixing my slice at the driving range while learning how to Golf'
+  },
+  {
+    image: Basketball,
+    caption: 'Practicing and getting better at basketball - Time to fix my jumper!'
   }
 ];

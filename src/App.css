@@ -153,10 +153,13 @@
 }
 
 .home {
-  background: linear-gradient(90deg, #000000 0%, #2c3e50 50%, #2c3e50 100%);
   padding-top: 100px;
   padding-bottom: 100px;
   min-height: 100vh; /* Ensure it covers full viewport height */
+}
+
+.home-color {
+  background: linear-gradient(90deg, #000000 0%, #2c3e50 50%, #2c3e50 100%);
 }
 
 .landing-page {
@@ -811,7 +814,23 @@
   @apply w-64 md:w-72 lg:w-96 h-auto rounded-lg transition-all duration-300 ease-in-out hover:scale-105;
 }
 
-/* ----- END Micro Components ----- */
+
+.carousel .control-arrow {
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+
+.carousel .control-arrow:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.carousel .control-next.control-arrow:before,
+.carousel .control-prev.control-arrow:before {
+  color: white;
+  font-size: 20px;
+}
 
 .photo-grid {
   margin: 100px 0 50px;
@@ -915,3 +934,5 @@
 .fade-in {
   animation: fadeIn 1s ease-in-out forwards;
 }
+
+/* ----- END Micro Components ----- */

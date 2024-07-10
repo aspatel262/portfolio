@@ -2,7 +2,7 @@
 
 Welcome to my coding portfolio! This web application is built using ReactJs with TailwindCSS styling, showcasing my skills, projects, and achievements in the field of software development. You can check it out [here!](https://www.adityapatel.dev/)
 
-<img width="1160" alt="Porfolio website landing page src="[https://github.com/aspatel262/portfolio/assets/logo/landing.png](https://github.com/aspatel262/portfolio/blob/main/src/assets/logo/landing.png)">
+<img width="1160" alt="Porfolio website landing page src="https://github.com/aspatel262/portfolio/blob/main/src/assets/logo/landing.png">
 
 
 ## Table of Contents

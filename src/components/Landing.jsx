@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
+import { Link } from 'react-router-dom'; // Import Link for navigation
+
 import WavingAnimation from './WavingAnimation'; // Import the WavingAnimation component
 import RadialGradient from './RadialGradient'; // Make sure to import the RadialGradient component
 
@@ -34,7 +36,9 @@ function Landing() {
                     my services, or even a friend just looking around,<span className='come-see'>{" "}come check out what I've done.</span>
                 </p>
                 <div className="flex mt-8 justify-center">
-                    <button className="contact-btn md:w-48 w-96" href="/projects">Projects</button>
+                    <Link to="/projects">
+                        <button className="contact-btn md:w-48 w-96" href="/projects">Projects</button>
+                    </Link>
                 </div>
             </div>
             </div>

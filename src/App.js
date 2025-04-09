@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import { Analytics } from "@vercel/analytics/react";
@@ -12,6 +12,14 @@ import Projects from './pages/Projects.jsx';
 
 import E404 from './pages/404.jsx'
 
+function Experiences() {
+  useEffect(() => {
+    window.open('/assets/Aditya_Patel_Resume.pdf', '_blank'); // Open resume in a new tab
+  }, []);
+
+  return null; // No need to render anything on this route
+}
+
 export default function App() {
   return (
     <Router>
@@ -22,7 +30,7 @@ export default function App() {
         <Route path="/contact" element={<Home />} />
         <Route path="/about-me" element={<AboutMe />} exact />
         <Route path="/projects" element={<Projects />} exact />
-        <Route path="/experiences" element={<E404 />} exact />
+        <Route path="*" element={<E404 />} /> {/* Catch-all for 404 errors */}
       </Routes>
       <Footer />
     </Router>
